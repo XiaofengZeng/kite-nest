@@ -5,8 +5,16 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
+  <!-- 测试Vuex -->
+  <h1>{{ $store.state.finish }}</h1>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <!-- 测试Vouter -->
+  <div>
+    <router-link to="/HelloWorld">To HelloWorld</router-link>
+    <router-view></router-view>
+  </div>
+
+  <!-- <HelloWorld msg="Hello Vue 3 + Vite" /> -->
 </template>
 
 <style>
