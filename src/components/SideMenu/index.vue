@@ -3,6 +3,10 @@
   <div class="kn-side-menu" :class="activeClass">
     <div class="menu-body">
       <p>SideMenu</p>
+      <TimeFlies></TimeFlies>
+      <ModuleController></ModuleController>
+      <SceneSwitcher></SceneSwitcher>
+      <UserCard></UserCard>
     </div>
     <div class="expend-btn" @click="toggleMenu">
       <span :class="arrowClass"></span>
@@ -11,8 +15,19 @@
 </template>
 
 <script>
+import TimeFlies from './TimeFlies';
+import ModuleController from './ModuleController';
+import SceneSwitcher from './SceneSwitcher';
+import UserCard from './UserCard';
+
 export default {
   name: 'SideMenu',
+  components: {
+    TimeFlies,
+    ModuleController,
+    SceneSwitcher,
+    UserCard,
+  },
   data() {
     return {
       isActivated: false,
