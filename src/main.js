@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+// import 'element-ui/lib/theme-chalk/index.css';
+import './style/element-kn-primary/index.css'; // ElementUI自定义主题色 #f5995a
 import App from './App.vue';
 import router from './router';
 import store from './store';
