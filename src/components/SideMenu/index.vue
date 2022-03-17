@@ -5,7 +5,7 @@
       <p>SideMenu</p>
     </div>
     <div class="expend-btn" @click="toggleMenu">
-      <span class="el-icon-arrow-left"></span>
+      <span :class="arrowClass"></span>
     </div>
   </div>
 </template>
@@ -29,6 +29,11 @@ export default {
       this.isOpened = !this.isOpened;
     },
   },
+  computed: {
+    arrowClass() {
+      return this.isOpened ? 'el-icon-arrow-left' : 'el-icon-arrow-right';
+    },
+  },
 };
 </script>
 
@@ -44,32 +49,24 @@ export default {
     align-items: center;
     text-align: center;
     transition: all 1s cubic-bezier(0.1, 1, 1, 1);
+    .menu-body {
+      width: 350px;
+      height: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(211, 220, 230, 0.5);
+    }
+    .expend-btn {
+      background-color: rgba(115, 119, 124, 0.5);
+      width: 20px;
+      height: 80px;
+      line-height: 80px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
   }
   .active {
-    // transform: translateX(350px);
     left: 0px;
   }
-  .kn-side-menu .menu-body {
-    width: 350px;
-    height: inherit;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(211, 220, 230, 0.5);
-    // transition: all 1s cubic-bezier(0.1, 1, 1, 1);
-  }
-
-  .kn-side-menu .expend-btn {
-    background-color: rgba(115, 119, 124, 0.5);
-    width: 20px;
-    height: 80px;
-    line-height: 80px;
-    // transition: all 1s cubic-bezier(0.1, 1, 1, 1);
-  }
-  // .trans-side-menu-enter-active, .trans-side-menu-leave-active {
-  //   transition: all 1s cubic-bezier(0.1, 1, 1, 1);
-  // }
-  // .trans-side-menu-enter, .trans-side-menu-leave-to {
-  //   transform: translateX(-350px);
-  // }
 </style>
