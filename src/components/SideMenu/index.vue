@@ -1,6 +1,6 @@
 <template>
   <!-- 主页-侧边菜单栏 -->
-  <div class="kn-side-menu" :class="isOpened ? 'active' : null">
+  <div class="kn-side-menu" :class="activeClass">
     <div class="menu-body">
       <p>SideMenu</p>
     </div>
@@ -15,23 +15,26 @@ export default {
   name: 'SideMenu',
   data() {
     return {
-      isOpened: false,
+      isActivated: false,
     };
   },
   mounted() {
     // TODO: 有待商榷是否合理
     setTimeout(() => {
-      this.isOpened = true;
+      this.isActivated = true;
     }, 100);
   },
   methods: {
     toggleMenu() {
-      this.isOpened = !this.isOpened;
+      this.isActivated = !this.isActivated;
     },
   },
   computed: {
+    activeClass() {
+      return this.isActivated ? 'active' : null;
+    },
     arrowClass() {
-      return this.isOpened ? 'el-icon-arrow-left' : 'el-icon-arrow-right';
+      return this.isActivated ? 'el-icon-arrow-left' : 'el-icon-arrow-right';
     },
   },
 };
