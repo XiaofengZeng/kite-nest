@@ -1,7 +1,7 @@
 <template>
   <!-- 主页-顶部栏 -->
   <div class="kn-header">
-    <p class="sys-name">KiteNest</p>
+    <p class="sys-name">Kite-Nest</p>
   </div>
 </template>
 
@@ -13,9 +13,11 @@ export default {
 
 <style lang="less">
   .kn-header {
-    background-color: #B3C0D1;
     height: 50px;
     line-height: 50px;
     text-align: center;
+    background-color: #f5995a;
+    font-size: 28px;
+    color: #fff;
   }
 </style>
