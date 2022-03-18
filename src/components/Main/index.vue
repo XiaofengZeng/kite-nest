@@ -1,7 +1,7 @@
 <template>
   <!-- 主页-主要内容 -->
   <div class="kn-main">
-    <h1>Welcome KiteNest</h1>
+    <slot name="scene"></slot>
   </div>
 </template>
 

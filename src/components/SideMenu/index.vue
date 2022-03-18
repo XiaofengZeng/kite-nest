@@ -2,7 +2,6 @@
   <!-- 主页-侧边菜单栏 -->
   <div class="kn-side-menu" :class="activeClass">
     <div class="menu-body">
-      <p>SideMenu</p>
       <TimeFlies></TimeFlies>
       <ModuleController></ModuleController>
       <SceneSwitcher></SceneSwitcher>
@@ -71,9 +70,9 @@ export default {
       width: 350px;
       height: inherit;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-start;
       align-items: center;
-      background-color: rgba(211, 220, 230, 0.5);
     }
     .expend-btn {
       background-color: rgba(115, 119, 124, 0.5);
