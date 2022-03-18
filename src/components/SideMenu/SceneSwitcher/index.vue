@@ -5,9 +5,6 @@
     </div>
     <div class="scene-options">
       <ul>
-        <!-- <li><el-button type="primary" plain class="acitve">主页</el-button></li>
-        <li><el-button type="primary" plain>仓库管理</el-button></li>
-        <li><el-button type="primary" plain>地图展示</el-button></li> -->
         <li v-for="s in scenes" :key="s.key">
           <!-- TODO: 插图形式切换 -->
           <el-button
@@ -15,9 +12,7 @@
             plain
             :class="isActivated(s.key)"
             @click="changeScene(s.key, s.routePath)"
-          >
-            {{s.title}}
-          </el-button>
+          >{{ s.title }}</el-button>
         </li>
       </ul>
     </div>
@@ -31,9 +26,9 @@ export default {
     return {
       activatedScene: 'dashboard',
       scenes: [
-        { key: 'dashboard', title: '看板' },
-        { key: 'warehouse', title: '仓库管理' },
-        { key: 'map', title: '地图展示' },
+        { key: 'dashboard', title: '看板', routePath: '/dashboard' },
+        { key: 'warehouse', title: '仓库管理', routePath: '/warehouse' },
+        { key: 'map', title: '地图展示', routePath: '/map/2d' },
       ],
     };
   },
@@ -42,9 +37,18 @@ export default {
       return this.activatedScene === value ? 'active' : null;
     },
     changeScene(value) {
-      this.activatedScene = value;
-      this.$router.push(`/${value}`);
+      if (this.activatedScene !== value) {
+        this.activatedScene = value;
+        this.$router.push(`/${value}`);
+      }
     },
+  },
+  mounted() {
+    this.scenes.forEach((s) => {
+      if (this.$router.currentRoute.path.indexOf(s.routePath) > -1) {
+        this.activatedScene = s.key;
+      }
+    });
   },
 };
 </script>
@@ -60,8 +64,8 @@ export default {
     width: 30px;
     display: flex;
     align-items: center;
-    color: #FFF;
-    background-color: #f48031
+    color: #fff;
+    background-color: #f48031;
   }
   .scene-options {
     width: 320px;
@@ -79,9 +83,9 @@ export default {
       }
     }
     .active {
-      background: #F38031;
-      border-color: #F38031;
-      color: #FFF;
+      background: #f38031;
+      border-color: #f38031;
+      color: #fff;
     }
   }
 }
