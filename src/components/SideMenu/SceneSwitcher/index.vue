@@ -14,7 +14,7 @@
             type="primary"
             plain
             :class="isActivated(s.key)"
-            @click="changeScene(s.key)"
+            @click="changeScene(s.key, s.routePath)"
           >
             {{s.title}}
           </el-button>
@@ -29,9 +29,9 @@ export default {
   name: 'SceneSwitcher',
   data() {
     return {
-      activatedScene: 'home',
+      activatedScene: 'dashboard',
       scenes: [
-        { key: 'home', title: '主页' },
+        { key: 'dashboard', title: '看板' },
         { key: 'warehouse', title: '仓库管理' },
         { key: 'map', title: '地图展示' },
       ],
@@ -43,6 +43,7 @@ export default {
     },
     changeScene(value) {
       this.activatedScene = value;
+      this.$router.push(`/${value}`);
     },
   },
 };

@@ -2,7 +2,13 @@
   <!-- 主页 -->
   <div class="kn-home">
     <Header></Header>
-    <Main></Main>
+    <Main>
+      <template #scene>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+      </template>
+    </Main>
     <SideMenu></SideMenu>
   </div>
 </template>

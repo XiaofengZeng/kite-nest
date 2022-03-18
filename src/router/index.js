@@ -9,6 +9,34 @@ const routes = [
     path: '/',
     name: 'Home',
     component: HomeView,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        name: 'DashBoard',
+        component: () => import('../components/Dashboard'),
+      },
+      {
+        path: 'warehouse',
+        name: 'Warehouse',
+        component: () => import('../components/Warehouse'),
+      },
+      {
+        path: 'map',
+        name: 'Map',
+        component: () => import('../components/Map'),
+        // 访问 http://localhost:1215/#/map 时重定向至 http://localhost:1215/#/map/2d
+        redirect: '/map/2d',
+        children: [
+          {
+            path: '2d',
+            name: 'Map2d',
+            component: () => import('../components/Map/Map2d'),
+          },
+          // TODO: 后续会添加三维地图组件
+        ],
+      },
+    ],
   },
   {
     path: '/login',
