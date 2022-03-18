@@ -18,6 +18,5 @@ export default {
     text-align: center;
     align-items: center;
     justify-content: center;
-    background-color: #E9EEF3;
   }
 </style>
