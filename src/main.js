@@ -7,6 +7,7 @@ import router from './router';
 import store from './store';
 
 import './style/kn.less';
+import 'ol/ol.css';
 
 Vue.config.productionTip = false;
 
