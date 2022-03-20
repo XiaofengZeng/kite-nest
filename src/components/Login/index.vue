@@ -18,6 +18,7 @@
             placeholder="密码"
             show-password
             prefix-icon="el-icon-key"
+            @keyup.enter.native="login"
           ></el-input>
         </div>
         <div class="login-footer">
