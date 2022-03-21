@@ -1,5 +1,8 @@
 <template>
-  <Login></Login>
+  <!-- 登录界面 -->
+  <div class="kn-login">
+    <Login></Login>
+  </div>
 </template>
 
 <script>
@@ -13,6 +16,12 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="less" scoped>
+.kn-login {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 </style>
