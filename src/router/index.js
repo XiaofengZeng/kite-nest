@@ -24,7 +24,7 @@ const routes = [
       {
         path: 'map',
         name: 'Map',
-        component: () => import('../components/Map'),
+        component: () => import('../views/MapView'),
         // 访问 http://localhost:1215/#/map 时重定向至 http://localhost:1215/#/map/2d
         redirect: '/map/2d',
         children: [
