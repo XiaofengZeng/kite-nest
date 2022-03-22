@@ -11,8 +11,10 @@
             type="primary"
             plain
             :class="isActivated(s.key)"
-            @click="changeScene(s.key, s.routePath)"
-          >{{ s.title }}</el-button>
+            @click="setScene(s.key)"
+          >
+            {{ s.title }}
+          </el-button>
         </li>
       </ul>
     </div>
@@ -20,33 +22,28 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'SceneSwitcher',
-  data() {
-    return {
-      activatedScene: 'dashboard',
-      scenes: [
-        { key: 'dashboard', title: '看板', routePath: '/dashboard' },
-        { key: 'warehouse', title: '仓库管理', routePath: '/warehouse' },
-        { key: 'map', title: '地图展示', routePath: '/map/2d' },
-      ],
-    };
-  },
   methods: {
     isActivated(value) {
-      return this.activatedScene === value ? 'active' : null;
+      return this.currentScene === value ? 'active' : null;
     },
-    changeScene(value) {
-      if (this.activatedScene !== value) {
-        this.activatedScene = value;
+    setScene(value) {
+      if (this.currentScene !== value) {
+        this.$store.commit('setScene', value);
         this.$router.push(`/${value}`);
       }
     },
   },
+  computed: {
+    ...mapState(['currentScene', 'scenes']),
+  },
   mounted() {
     this.scenes.forEach((s) => {
-      if (this.$router.currentRoute.path.indexOf(s.routePath) > -1) {
-        this.activatedScene = s.key;
+      if (this.$router.currentRoute.path.indexOf(s.path) > -1) {
+        this.$store.commit('setScene', s.key);
       }
     });
   },

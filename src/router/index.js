@@ -13,7 +13,7 @@ const routes = [
     children: [
       {
         path: 'dashboard',
-        name: 'DashBoard',
+        name: 'Dashboard',
         component: () => import('../components/Dashboard'),
       },
       {

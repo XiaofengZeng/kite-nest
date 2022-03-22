@@ -55,35 +55,35 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .kn-side-menu {
-    // width: 370px;
-    left: -350px;
+.kn-side-menu {
+  // width: 370px;
+  left: -350px;
+  height: inherit;
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: all 1s cubic-bezier(0.1, 1, 1, 1);
+  .menu-body {
+    width: 350px;
     height: inherit;
     display: flex;
-    position: absolute;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    text-align: center;
-    transition: all 1s cubic-bezier(0.1, 1, 1, 1);
-    .menu-body {
-      width: 350px;
-      height: inherit;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-    }
-    .expend-btn {
-      background-color: rgba(115, 119, 124, 0.5);
-      width: 20px;
-      height: 80px;
-      line-height: 80px;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-    }
   }
-  .active {
-    left: 0px;
+  .expend-btn {
+    background-color: rgba(115, 119, 124, 0.5);
+    width: 20px;
+    height: 80px;
+    line-height: 80px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
   }
+}
+.active {
+  left: 0px;
+}
 </style>
