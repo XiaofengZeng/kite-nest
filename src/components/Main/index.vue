@@ -6,17 +6,30 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'Main',
+  computed: {
+    ...mapState(['scenes']),
+  },
+  beforeUpdate() {
+    // 在使用URL跳转主界面时，进行判断并将值设置进Vuex中
+    this.scenes.forEach((s) => {
+      if (this.$router.currentRoute.path.indexOf(s.path) > -1) {
+        this.$store.commit('setScene', s.key);
+      }
+    });
+  },
 };
 </script>
 
 <style lang="less" scoped>
-  .kn-main {
-    display: flex;
-    flex: 1 1 auto;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-  }
+.kn-main {
+  display: flex;
+  flex: 1 1 auto;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
 </style>
