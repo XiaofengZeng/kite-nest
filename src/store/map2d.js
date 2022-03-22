@@ -13,8 +13,24 @@ export default {
       zoom: 12,
     },
     // 功能相关配置
-    actionsConfig: {
-    },
+    moduleDrectories: [
+      {
+        key: 'commonTool',
+        title: '常用工具',
+        list: [
+          { id: '001', cnName: '测距', enName: 'measureDistance' },
+          { id: '002', cnName: '侧面积', enName: 'measureArea' },
+          { id: '003', cnName: '属性查询', enName: 'AttributesQuery' },
+        ],
+      },
+      {
+        key: 'analyzeTool',
+        title: '分析工具',
+        list: [
+          { id: '001', cnName: '缓冲区分析', enName: 'BufferAnalysis' },
+        ],
+      },
+    ],
   },
   mutations: {
   },

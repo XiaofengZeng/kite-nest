@@ -16,7 +16,7 @@
             :class="isActivated(s.key)"
             @click="changeScene(s.key, s.routePath)"
           >
-            {{s.title}}
+            {{ s.title }}
           </el-button>
         </li>
       </ul>
@@ -31,9 +31,9 @@ export default {
     return {
       activatedScene: 'dashboard',
       scenes: [
-        { key: 'dashboard', title: '看板' },
-        { key: 'warehouse', title: '仓库管理' },
-        { key: 'map', title: '地图展示' },
+        { key: 'dashboard', title: '看板', path: '/dashboard' },
+        { key: 'warehouse', title: '仓库管理', path: '/warehouse' },
+        { key: 'map', title: '地图展示', path: '/map/2d' },
       ],
     };
   },
@@ -42,9 +42,19 @@ export default {
       return this.activatedScene === value ? 'active' : null;
     },
     changeScene(value) {
-      this.activatedScene = value;
-      this.$router.push(`/${value}`);
+      if (this.activatedScene !== value) {
+        this.activatedScene = value;
+        this.$store.commit('changeScene', value);
+        this.$router.push(`/${value}`);
+      }
     },
+  },
+  mounted() {
+    this.scenes.forEach((s) => {
+      if (this.$router.currentRoute.path.indexOf(s.route) > -1) {
+        this.activatedScene = s.key;
+      }
+    });
   },
 };
 </script>
@@ -60,8 +70,8 @@ export default {
     width: 30px;
     display: flex;
     align-items: center;
-    color: #FFF;
-    background-color: #f48031
+    color: #fff;
+    background-color: #f48031;
   }
   .scene-options {
     width: 320px;
@@ -79,9 +89,9 @@ export default {
       }
     }
     .active {
-      background: #F38031;
-      border-color: #F38031;
-      color: #FFF;
+      background: #f38031;
+      border-color: #f38031;
+      color: #fff;
     }
   }
 }
