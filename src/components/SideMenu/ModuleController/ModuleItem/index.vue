@@ -28,11 +28,15 @@ export default {
     isActivated(value) {
       return this.activatedModule === value ? 'active' : null;
     },
+    // TODO: 触发功能，执行相关方法
     toggleModule(value) {
       if (this.activatedModule !== value) {
         this.activatedModule = value;
+        // this.$store.commit('map2d/addToActivatedModules', value);
+        this.$store.commit('map2d/setActivatedModule', value);
       } else {
         this.activatedModule = '';
+        // this.$store.commit('map2d/romoveFromActivatedModules', value);
       }
     },
   },

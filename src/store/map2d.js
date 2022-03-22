@@ -31,8 +31,23 @@ export default {
         ],
       },
     ],
+    // 当前激活的功能
+    activatedModules: [],
+    activatedModule: '',
   },
   mutations: {
+    addToActivatedModules(state, name) {
+      state.activatedModules.push(name);
+    },
+    romoveFromActivatedModules(state, name) {
+      const index = state.activatedModules.indexOf(name);
+      if (index > -1) {
+        state.activatedModules.splice(index, 1);
+      }
+    },
+    setActivatedModule(state, name) {
+      state.activatedModule = name;
+    },
   },
   actions: {
   },
