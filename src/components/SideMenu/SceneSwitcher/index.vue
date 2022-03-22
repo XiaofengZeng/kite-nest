@@ -5,9 +5,6 @@
     </div>
     <div class="scene-options">
       <ul>
-        <!-- <li><el-button type="primary" plain class="acitve">主页</el-button></li>
-        <li><el-button type="primary" plain>仓库管理</el-button></li>
-        <li><el-button type="primary" plain>地图展示</el-button></li> -->
         <li v-for="s in scenes" :key="s.key">
           <!-- TODO: 插图形式切换 -->
           <el-button
