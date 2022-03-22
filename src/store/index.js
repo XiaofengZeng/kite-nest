@@ -9,9 +9,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     currentScene: 'dashboard',
+    scenes: [
+      { key: 'dashboard', title: '看板', path: '/dashboard' },
+      { key: 'warehouse', title: '仓库管理', path: '/warehouse' },
+      { key: 'map', title: '地图展示', path: '/map/2d' },
+    ],
   },
   mutations: {
-    changeScene(state, name) {
+    setScene(state, name) {
       state.currentScene = name;
     },
   },
