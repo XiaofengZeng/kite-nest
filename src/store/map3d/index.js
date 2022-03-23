@@ -1,18 +1,8 @@
-import executor from './executor';
-
 export default {
   namespaced: true,
   state: {
     // 地图相关配置
     mapConfig: {
-      // 底图
-      baseLayer: 'OSM',
-      // 系统坐标系
-      projection: 'EPSG:3857',
-      // 视图中心点
-      viewCenter: [114.42, 23.12],
-      // 初始缩放层级
-      zoom: 12,
     },
     // 功能相关配置
     moduleDrectories: [
@@ -20,8 +10,8 @@ export default {
         key: 'commonTool',
         title: '常用工具',
         list: [
-          { id: '001', cnName: '测距', enName: 'measureDistance' },
-          { id: '002', cnName: '侧面积', enName: 'measureArea' },
+          { id: '001', cnName: '三维测距', enName: 'measureDistance' },
+          { id: '002', cnName: '三维测面积', enName: 'measureArea' },
           { id: '003', cnName: '属性查询', enName: 'AttributesQuery' },
         ],
       },
@@ -30,6 +20,8 @@ export default {
         title: '分析工具',
         list: [
           { id: '001', cnName: '缓冲区分析', enName: 'BufferAnalysis' },
+          { id: '002', cnName: '可视分析', enName: 'SightAnalysis' },
+          { id: '003', cnName: '淹没分析', enName: 'FloodAnalysis' },
         ],
       },
     ],
@@ -56,6 +48,5 @@ export default {
   getters: {
   },
   modules: {
-    executor,
   },
 };
