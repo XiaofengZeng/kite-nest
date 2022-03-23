@@ -33,7 +33,11 @@ const routes = [
             name: 'Map2d',
             component: () => import('../components/Map/Map2d'),
           },
-          // TODO: 后续会添加三维地图组件
+          {
+            path: '3d',
+            name: 'Map3d',
+            component: () => import('../components/Map/Map3d'),
+          },
         ],
       },
     ],

@@ -55,7 +55,16 @@ export default {
           this.directorise = [];
           break;
         case 'map':
-          this.directorise = this.$store.state.map2d.moduleDrectories;
+          switch (this.currentMap.toLowerCase()) {
+            case 'map2d':
+              this.directorise = this.$store.state.map2d.moduleDrectories;
+              break;
+            case 'map3d':
+              this.directorise = this.$store.state.map3d.moduleDrectories;
+              break;
+            default:
+              break;
+          }
           break;
         default:
           break;
@@ -82,10 +91,13 @@ export default {
     this.getDirectorise();
   },
   computed: {
-    ...mapState(['currentScene']),
+    ...mapState(['currentScene', 'currentMap']),
   },
   watch: {
-    currentScene(_, newVal) {
+    currentScene(newVal) {
+      this.getDirectorise(newVal);
+    },
+    currentMap(newVal) {
       this.getDirectorise(newVal);
     },
   },
