@@ -12,7 +12,7 @@ export default new Vuex.Store({
     scenes: [
       { key: 'dashboard', title: '看板', path: '/dashboard' },
       { key: 'warehouse', title: '仓库管理', path: '/warehouse' },
-      { key: 'map', title: '地图展示', path: '/map/2d' },
+      { key: 'map', title: '地图展示', path: '/map' },
     ],
   },
   mutations: {

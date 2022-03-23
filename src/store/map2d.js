@@ -1,3 +1,5 @@
+import executor from './executor';
+
 export default {
   namespaced: true,
   state: {
@@ -52,5 +54,8 @@ export default {
   actions: {
   },
   getters: {
+  },
+  modules: {
+    executor,
   },
 };

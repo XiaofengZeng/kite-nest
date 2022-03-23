@@ -4,11 +4,29 @@
       <span>功能模块</span>
     </div>
     <div class="module-directories">
-      <ModuleDirectory
-        v-for="d in directorise"
-        :key="d.key"
-        :item="d"
-      ></ModuleDirectory>
+      <template v-for="directory in directorise">
+        <div class="directory" :key="directory.key">
+          <div class="directory-title">
+            {{ directory.title }}
+          </div>
+          <div class="directory-item">
+            <ul>
+              <template v-for="item in directory.list">
+                <li :key="item.id">
+                  <el-button
+                    type="primary"
+                    plain
+                    :class="isActivated(item.enName)"
+                    @click="toggleModule(item.enName)"
+                  >
+                    {{ item.cnName }}
+                  </el-button>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -16,18 +34,17 @@
 <script>
 import { mapState } from 'vuex';
 
-import ModuleDirectory from './ModuleDirectory';
+import Executor from '@/components/Map/mixin/Executor';
 
 export default {
   name: 'ModuleController',
-  components: {
-    ModuleDirectory,
-  },
+  components: {},
   data() {
     return {
       directorise: [],
     };
   },
+  mixins: [Executor],
   methods: {
     getDirectorise() {
       switch (this.currentScene.toLowerCase()) {
@@ -42,6 +59,22 @@ export default {
           break;
         default:
           break;
+      }
+    },
+    isActivated(value) {
+      return this.activatedModule === value ? 'active' : null;
+    },
+    // TODO: 触发功能，执行相关方法
+    toggleModule(value) {
+      if (this.activatedModule !== value) {
+        this.activatedModule = value;
+        // this.$store.commit('map2d/addToActivatedModules', value);
+        // this.$store.commit('map2d/setActivatedModule', value);
+        // this.$store.commit('map2d/setActivatedModule', value);
+        this.execute(value);
+      } else {
+        this.activatedModule = '';
+        // this.$store.commit('map2d/romoveFromActivatedModules', value);
       }
     },
   },
@@ -78,11 +111,22 @@ export default {
     width: 320px;
     display: flex;
     flex-direction: column;
-  }
-  .active {
-    background: #f38031;
-    border-color: #f38031;
-    color: #fff;
+    ul {
+      width: inherit;
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      li {
+        display: inline;
+        margin: 5px;
+      }
+      .active {
+        background: #f38031;
+        border-color: #f38031;
+        color: #fff;
+      }
+    }
   }
 }
 </style>
