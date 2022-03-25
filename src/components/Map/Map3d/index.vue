@@ -12,8 +12,8 @@ export default {
   },
   methods: {
     createMap3d() {
-      // const map = this.Cesium.Viewer('kn-map3d');
-      // return map;
+      const map = this.Cesium.Viewer('kn-map3d');
+      return map;
     },
   },
   mounted() {
@@ -24,7 +24,7 @@ export default {
 
 <style lang="less" scoped>
 .kn-map3d-container {
-  height: 100%;
   width: 100%;
+  height: 887px; // 不能用100%，会使得整个界面无限拉长
 }
 </style>
