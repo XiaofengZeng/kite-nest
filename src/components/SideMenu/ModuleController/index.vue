@@ -36,6 +36,8 @@ import { mapState } from 'vuex';
 
 import Executor from '@/components/Map/mixin/Executor';
 
+import drawingHelper from '@/components/Map/mixin/interaction/DrawingHelper';
+
 export default {
   name: 'ModuleController',
   components: {},
@@ -44,7 +46,7 @@ export default {
       directorise: [],
     };
   },
-  mixins: [Executor],
+  mixins: [Executor, drawingHelper],
   methods: {
     getDirectorise() {
       switch (this.currentScene.toLowerCase()) {
@@ -87,9 +89,6 @@ export default {
       }
     },
   },
-  mounted() {
-    this.getDirectorise();
-  },
   computed: {
     ...mapState(['currentScene', 'currentMap']),
   },
@@ -100,6 +99,12 @@ export default {
     currentMap(newVal) {
       this.getDirectorise(newVal);
     },
+  },
+  mounted() {
+    this.getDirectorise();
+  },
+  beforeUpdate() {
+    this.setDrawingMode(this.currentMap);
   },
 };
 </script>

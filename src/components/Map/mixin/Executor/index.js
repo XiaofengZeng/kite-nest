@@ -35,7 +35,7 @@ export default {
     // ...mapState(`${this.executorMode}/executor`, ['methodList']),
   },
   watch: {
-    methodList(_, newList) {
+    methodList(newList) {
       if (newList.length) {
         newList.forEach((item) => {
           // 执行组件中的方法

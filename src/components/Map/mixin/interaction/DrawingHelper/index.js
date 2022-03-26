@@ -8,11 +8,11 @@ export default {
   methods: {
     // 设置绘制模式（二维绘制/三维绘制），需要在初始化地图时设置
     setDrawingMode(mode) {
-      switch (mode.toUpperCase()) {
-        case '2D':
+      switch (mode.toLowerCase()) {
+        case 'map2d':
           this.is2dDrawing = true;
           break;
-        case '3D':
+        case 'map3d':
           this.is2dDrawing = false;
           break;
         default:
@@ -21,6 +21,7 @@ export default {
     },
     // 测距
     measureDistance() {
+      // TODO: 完成测距逻辑
       console.log(111);
     },
   },

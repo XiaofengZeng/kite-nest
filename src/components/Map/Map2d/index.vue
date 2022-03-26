@@ -9,8 +9,6 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import { transform } from 'ol/proj';
 
-import drawingHelper from '../mixin/interaction/DrawingHelper';
-
 export default {
   name: 'Map2d',
   data() {
@@ -18,7 +16,6 @@ export default {
       map2d: null,
     };
   },
-  mixins: [drawingHelper],
   methods: {
     createMap2d(id, config) {
       let baseLayer = null;
@@ -51,7 +48,6 @@ export default {
   mounted() {
     const { mapConfig } = this.$store.state.map2d;
     this.map2d = this.createMap2d('kn-map2d', mapConfig);
-    this.setDrawingMode('2D');
   },
 };
 </script>
