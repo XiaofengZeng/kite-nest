@@ -17,7 +17,7 @@
                     type="primary"
                     plain
                     :class="isActivated(item.enName)"
-                    @click="toggleModule(item.enName)"
+                    @click="toggleModule(item.invokedFn, item.args)"
                   >
                     {{ item.cnName }}
                   </el-button>
@@ -74,10 +74,10 @@ export default {
       return this.activatedModule === value ? 'active' : null;
     },
     // TODO: 触发功能，执行相关方法
-    toggleModule(value) {
+    toggleModule(value, args) {
       if (this.activatedModule !== value) {
         this.activatedModule = value;
-        this.execute(value);
+        this.execute(value, ...args);
       } else {
         this.activatedModule = '';
       }

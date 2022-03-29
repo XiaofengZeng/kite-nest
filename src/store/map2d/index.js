@@ -20,9 +20,27 @@ export default {
         key: 'commonTool',
         title: '常用工具',
         list: [
-          { id: '001', cnName: '测距', enName: 'measureDistance' },
-          { id: '002', cnName: '侧面积', enName: 'measureArea' },
-          { id: '003', cnName: '属性查询', enName: 'AttributesQuery' },
+          {
+            id: '001',
+            cnName: '测距',
+            enName: 'MeasureLength',
+            invokedFn: 'mesure',
+            args: ['LineString'],
+          },
+          {
+            id: '002',
+            cnName: '侧面积',
+            enName: 'MeasureArea',
+            invokedFn: 'mesure',
+            args: ['Polygon'],
+          },
+          {
+            id: '003',
+            cnName: '属性查询',
+            enName: 'AttributesQuery',
+            invokedFn: 'indentify',
+            args: [],
+          },
         ],
       },
       {
