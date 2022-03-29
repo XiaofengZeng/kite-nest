@@ -34,9 +34,7 @@
 <script>
 import { mapState } from 'vuex';
 
-import Executor from '@/components/Map/mixin/Executor';
-
-import drawingHelper from '@/components/Map/mixin/interaction/DrawingHelper';
+import Executor from './mixin/Executor';
 
 export default {
   name: 'ModuleController',
@@ -46,7 +44,7 @@ export default {
       directorise: [],
     };
   },
-  mixins: [Executor, drawingHelper],
+  mixins: [Executor],
   methods: {
     getDirectorise() {
       switch (this.currentScene.toLowerCase()) {
@@ -79,13 +77,9 @@ export default {
     toggleModule(value) {
       if (this.activatedModule !== value) {
         this.activatedModule = value;
-        // this.$store.commit('map2d/addToActivatedModules', value);
-        // this.$store.commit('map2d/setActivatedModule', value);
-        // this.$store.commit('map2d/setActivatedModule', value);
         this.execute(value);
       } else {
         this.activatedModule = '';
-        // this.$store.commit('map2d/romoveFromActivatedModules', value);
       }
     },
   },
@@ -93,18 +87,18 @@ export default {
     ...mapState(['currentScene', 'currentMap']),
   },
   watch: {
-    currentScene(newVal) {
-      this.getDirectorise(newVal);
+    currentScene(newScene) {
+      this.getDirectorise();
+      this.setExecutorMode(newScene);
     },
-    currentMap(newVal) {
-      this.getDirectorise(newVal);
+    currentMap(newMap) {
+      this.getDirectorise();
+      this.setExecutorMode(newMap);
     },
   },
   mounted() {
     this.getDirectorise();
-  },
-  beforeUpdate() {
-    this.setDrawingMode(this.currentMap);
+    this.setExecutorMode(this.currentScene);
   },
 };
 </script>

@@ -1,4 +1,4 @@
-import executor from './executor';
+import executor from '../executor';
 
 export default {
   namespaced: true,
