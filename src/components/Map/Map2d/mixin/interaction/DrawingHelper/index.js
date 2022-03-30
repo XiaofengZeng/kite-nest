@@ -235,5 +235,14 @@ export default {
       }
       return output;
     },
+    // 关闭功能
+    shutdown() {
+      this.map2d.removeInteraction(this.measureSupporter.drawInteraction);
+      const nodes = this.measureSupporter.measureTooltipElement.parentNode.childNodes;
+      nodes.forEach((node) => {
+        this.measureSupporter.measureTooltipElement.parentNode.removeChild(node);
+      });
+      this.drawLayer.getSource().clear();
+    },
   },
 };

@@ -80,6 +80,7 @@ export default {
         this.execute(value, ...args);
       } else {
         this.activatedModule = '';
+        this.shutdown(value);
       }
     },
   },

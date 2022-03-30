@@ -7,7 +7,7 @@ export default {
     };
   },
   computed: {
-    ...mapState('map2d/executor', ['methodList']),
+    ...mapState('map2d/executor', ['methodList', 'shutdownList']),
   },
   watch: {
     methodList(newList) {
@@ -18,6 +18,16 @@ export default {
         });
         // 重置执行方法列表
         this.$store.commit('map2d/executor/resetMethodList');
+      }
+    },
+    shutdownList(newList) {
+      if (newList.length) {
+        newList.forEach(() => {
+          // 执行组件中的方法
+          this.shutdown();
+        });
+        // 重置执行关闭列表
+        this.$store.commit('map2d/executor/resetShutdownList');
       }
     },
   },
