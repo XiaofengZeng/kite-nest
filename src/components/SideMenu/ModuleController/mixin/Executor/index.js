@@ -30,5 +30,9 @@ export default {
       };
       this.$store.commit(`${this.executorMode}/executor/addMethod`, methodObj);
     },
+    // 关闭功能模块
+    shutdown(name) {
+      this.$store.commit(`${this.executorMode}/executor/addShutdown`, name);
+    },
   },
 };

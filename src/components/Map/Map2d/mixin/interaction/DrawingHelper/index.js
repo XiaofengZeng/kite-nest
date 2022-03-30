@@ -30,6 +30,7 @@ export default {
 
         measureTooltip: null, // 绘制提示工具
         measureTooltipElement: null,
+        measureTooltips: [], // 绘制提示工具DOM元素列表，用于后续关闭时删除
 
         // 继续绘制草图的提示
         continueLineMsg: '点击继续绘制当前线段',
@@ -138,6 +139,9 @@ export default {
       this.measureSupporter.drawInteraction.on('drawend', () => {
         this.measureSupporter.measureTooltipElement.className = 'ol-tooltip ol-tooltip-static';
         this.measureSupporter.measureTooltip.setOffset([0, -7]);
+        // 添加至绘制提示工具列表中
+        this.measureSupporter.measureTooltips
+          .push(this.measureSupporter.measureTooltipElement.parentNode);
         // 绘制草图置空
         this.measureSupporter.sketch = null;
         // DOM元素置空，为了后续重新创建的同时保留原先的DOM元素
@@ -234,6 +238,21 @@ export default {
         output = `${Math.round(area * 100) / 100} m<sup>2</sup>`;
       }
       return output;
+    },
+    // 关闭功能
+    shutdown() {
+      this.map2d.removeInteraction(this.measureSupporter.drawInteraction);
+
+      this.drawLayer.getSource().clear();
+
+      this.map2d.removeOverlay(this.measureSupporter.measureTooltip);
+      this.map2d.removeOverlay(this.measureSupporter.helpTooltip);
+
+      const measureParentNode = this.measureSupporter.measureTooltips[0].parentNode;
+      for (let i = 0; i < this.measureSupporter.measureTooltips.length; i += 1) {
+        measureParentNode.removeChild(this.measureSupporter.measureTooltips[i]);
+      }
+      this.measureSupporter.measureTooltips = [];
     },
   },
 };
