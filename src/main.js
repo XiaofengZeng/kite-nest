@@ -10,8 +10,9 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-import './style/kn.less';
 import 'ol/ol.css';
+import './style/kn.less';
+import './style/kn-ol-custom.less';
 
 // 定义为全局变量，以便调用
 Vue.prototype.Cesium = Cesium;
