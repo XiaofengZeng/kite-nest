@@ -73,12 +73,18 @@ export default {
     isActivated(value) {
       return this.activatedModule === value ? 'active' : null;
     },
-    // TODO: 触发功能，执行相关方法
     toggleModule(value, args) {
+      // 1. 激活 -> 点击功能的按钮
       if (this.activatedModule !== value) {
+        // 3. 关闭 -> 点击其他功能的按钮
+        // TODO: 处理关闭原先功能时，watch回调延迟执行的问题
+        if (this.activatedModule) {
+          this.shutdown(this.activatedModule);
+        }
         this.activatedModule = value;
         this.execute(value, ...args);
       } else {
+        // 2. 关闭 -> 点击当前触发的功能的按钮
         this.activatedModule = '';
         this.shutdown(value);
       }

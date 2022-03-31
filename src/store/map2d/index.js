@@ -24,14 +24,14 @@ export default {
             id: '001',
             cnName: '测距',
             enName: 'MeasureLength',
-            invokedFn: 'mesure',
+            invokedFn: 'measureLength',
             args: ['LineString'],
           },
           {
             id: '002',
             cnName: '侧面积',
             enName: 'MeasureArea',
-            invokedFn: 'mesure',
+            invokedFn: 'measureArea',
             args: ['Polygon'],
           },
           {
