@@ -21,5 +21,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     // 关闭 必须拥有函数名
     'func-names': ['error', 'never'],
+    // 关闭 下划线标识符
+    'no-underscore-dangle': 'off',
   },
 };

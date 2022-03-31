@@ -39,11 +39,21 @@ export default {
     };
   },
   mounted() {
-    this.initDrawLayer();
+    this._initDrawLayer();
   },
   methods: {
+    // 测距入口
+    measureLength(geometryType) {
+      this._measure(geometryType);
+    },
+
+    // 测面积入口
+    measureArea(geometryType) {
+      this._measure(geometryType);
+    },
+
     // 初始化绘制图层
-    initDrawLayer() {
+    _initDrawLayer() {
       const style = new Style({
         fill: new Fill({
           color: [255, 255, 255, 0.5],
@@ -60,7 +70,7 @@ export default {
       });
     },
     // 增加交互+监听绘制
-    addInteraction(type) {
+    _addInteraction(type) {
       // 现在已有绘制交互则移除
       if (this.measureSupporter.drawInteraction) {
         this.map2d.removeInteraction(this.measureSupporter.drawInteraction);
@@ -97,7 +107,7 @@ export default {
     },
 
     // 测量（测距/侧面加）
-    mesure(geometryType) {
+    _measure(geometryType) {
       // 原先已将绘制图层加入地图中则忽略再次添加
       const drawLayer = [];
       this.map2d.getLayers().getArray().forEach((layer) => {
@@ -109,11 +119,11 @@ export default {
         this.map2d.addLayer(this.drawLayer);
       }
 
-      this.addInteraction(geometryType);
+      this._addInteraction(geometryType);
 
-      this.createHelpTooltip();
-      this.createMeasureTooltip();
-      this.createPointerTooltip();
+      this._createHelpTooltip();
+      this._createMeasureTooltip();
+      this._createPointerTooltip();
 
       // 绘制监听
       this.measureSupporter.drawInteraction.on('drawstart', (evt) => {
@@ -125,10 +135,10 @@ export default {
           let output;
 
           if (gemo instanceof LineString) {
-            output = this.formatLength(gemo);
+            output = this._formatLength(gemo);
             tooltipCoord = gemo.getLastCoordinate();
           } else if (gemo instanceof Polygon) {
-            output = this.formatArea(gemo);
+            output = this._formatArea(gemo);
             tooltipCoord = gemo.getInteriorPoint().getCoordinates();
           }
 
@@ -146,13 +156,13 @@ export default {
         this.measureSupporter.sketch = null;
         // DOM元素置空，为了后续重新创建的同时保留原先的DOM元素
         this.measureSupporter.measureTooltipElement = null;
-        this.createMeasureTooltip();
+        this._createMeasureTooltip();
         unByKey(this.measureSupporter.sketchListener);
       });
     },
 
     // 创建鼠标指针提示工具
-    createPointerTooltip() {
+    _createPointerTooltip() {
       this.map2d.on('pointermove', (evt) => {
         if (evt.dragging) {
           return;
@@ -181,7 +191,7 @@ export default {
     },
 
     // 创建帮助提示工具
-    createHelpTooltip() {
+    _createHelpTooltip() {
       if (this.measureSupporter.helpTooltipElement) {
         this.measureSupporter.helpTooltipElement.parentNode
           .removeChild(this.measureSupporter.helpTooltipElement);
@@ -198,7 +208,7 @@ export default {
     },
 
     // 创建绘制提示工具
-    createMeasureTooltip() {
+    _createMeasureTooltip() {
       if (this.measureSupporter.measureTooltipElement) {
         this.measureSupporter.measureTooltipElement.parentNode
           .removeChild(this.measureSupporter.measureTooltipElement);
@@ -217,7 +227,7 @@ export default {
     },
 
     // 格式化距离
-    formatLength(line) {
+    _formatLength(line) {
       const length = getLength(line);
       let output;
       if (length > 100) {
@@ -229,7 +239,7 @@ export default {
     },
 
     // 格式化面积
-    formatArea(polygon) {
+    _formatArea(polygon) {
       const area = getArea(polygon);
       let output;
       if (area > 10000) {
@@ -239,6 +249,7 @@ export default {
       }
       return output;
     },
+
     // 关闭功能
     shutdown() {
       this.map2d.removeInteraction(this.measureSupporter.drawInteraction);
