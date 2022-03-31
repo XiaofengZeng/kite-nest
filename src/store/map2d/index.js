@@ -21,24 +21,21 @@ export default {
         title: '常用工具',
         list: [
           {
-            id: '001',
-            cnName: '测距',
-            enName: 'MeasureLength',
-            invokedFn: 'measureLength',
-            args: ['LineString'],
+            id: '001', // 功能编号
+            name: '测距', // 功能名称
+            toggle: 'measureLength', // 触发方法名
+            args: ['LineString'], // 触发参数
           },
           {
             id: '002',
-            cnName: '侧面积',
-            enName: 'MeasureArea',
-            invokedFn: 'measureArea',
+            name: '侧面积',
+            toggle: 'measureArea',
             args: ['Polygon'],
           },
           {
             id: '003',
-            cnName: '属性查询',
-            enName: 'AttributesQuery',
-            invokedFn: 'indentify',
+            name: '属性查询',
+            toggle: 'indentify',
             args: [],
           },
         ],
@@ -47,7 +44,12 @@ export default {
         key: 'analyzeTool',
         title: '分析工具',
         list: [
-          { id: '001', cnName: '缓冲区分析', enName: 'BufferAnalysis' },
+          {
+            id: '001',
+            name: '缓冲区分析',
+            toggle: 'bufferAnalysis',
+            args: [],
+          },
         ],
       },
     ],

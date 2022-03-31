@@ -13,14 +13,12 @@
             <ul>
               <template v-for="item in directory.list">
                 <li :key="item.id">
-                  <el-button
-                    type="primary"
-                    plain
-                    :class="isActivated(item.enName)"
-                    @click="toggleModule(item.invokedFn, item.args)"
+                  <ModuleSwitcher
+                    :class="isActivated(item.toggle)"
+                    @click.native="toggleModule(item.toggle, item.args)"
                   >
-                    {{ item.cnName }}
-                  </el-button>
+                    {{ item.name }}
+                  </ModuleSwitcher>
                 </li>
               </template>
             </ul>
@@ -34,13 +32,15 @@
 <script>
 import { mapState } from 'vuex';
 
+import ModuleSwitcher from './ModuleSwitcher';
 import Executor from './mixin/Executor';
 
 export default {
   name: 'ModuleController',
-  components: {},
+  components: { ModuleSwitcher },
   data() {
     return {
+      activatedModule: '',
       directorise: [],
     };
   },
@@ -133,11 +133,12 @@ export default {
       width: inherit;
       list-style: none;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       li {
         display: inline;
-        margin: 5px;
+        margin: 8px;
       }
       .active {
         background: #f38031;
