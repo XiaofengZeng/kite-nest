@@ -73,10 +73,10 @@ export default {
   height: 350px;
   position: absolute;
   right: -220px;
+  top: 70px;
   display: flex;
   flex-direction: row;
   transition: all 1s cubic-bezier(0.1, 1, 1, 1);
-  overflow: hidden;
   .tag {
     width: 30px;
     height: 100px;

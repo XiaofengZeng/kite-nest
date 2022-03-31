@@ -27,6 +27,8 @@ export default {
 .kn-map {
   width: 100%;
   height: 100%;
+  position: relative;
+  overflow: hidden;
   .map-switcher {
     position: absolute;
     width: 150px;
@@ -34,15 +36,7 @@ export default {
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 4px;
     right: 10px;
-    top: 60px;
-  }
-  .layer-catalog {
-    position: absolute;
-    width: 250px;
-    height: 350px;
-    top: 120px;
-    right: 0px;
-    overflow: hidden;
+    top: 10px;
   }
 }
 </style>
