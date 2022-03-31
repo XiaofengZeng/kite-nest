@@ -53,6 +53,23 @@ export default {
         ],
       },
     ],
+
+    // 图层资源相关配置
+    layerDirectories: [
+      {
+        id: 1,
+        label: '供应商',
+      },
+      {
+        id: 2,
+        label: '零售商',
+      },
+      {
+        id: 3,
+        label: '批发商',
+      },
+    ],
+
     // 当前激活的功能
     activatedModules: [],
     activatedModule: '',

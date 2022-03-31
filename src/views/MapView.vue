@@ -4,16 +4,21 @@
     <div class="map-switcher">
       <MapSwitcher></MapSwitcher>
     </div>
+    <div class="layer-catalog">
+      <LayerCatalog></LayerCatalog>
+    </div>
   </div>
 </template>
 
 <script>
 import MapSwitcher from '@/components/Map/MapSwitcher';
+import LayerCatalog from '@/components/Map/LayerCatalog';
 
 export default {
   name: 'MapView',
   components: {
     MapSwitcher,
+    LayerCatalog,
   },
 };
 </script>
@@ -30,6 +35,14 @@ export default {
     border-radius: 4px;
     right: 10px;
     top: 60px;
+  }
+  .layer-catalog {
+    position: absolute;
+    width: 250px;
+    height: 350px;
+    top: 120px;
+    right: 0px;
+    overflow: hidden;
   }
 }
 </style>
