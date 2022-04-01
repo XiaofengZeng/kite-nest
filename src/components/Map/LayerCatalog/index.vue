@@ -1,5 +1,5 @@
 <template>
-  <div class="kn-layer-catalog" :class="activeClass">
+  <div class="kn-layer-catalog" :class="isActivated ? 'active' : null">
     <div class="tag" @click="toggleCatalog">图层目录</div>
     <div class="catalog">
       <el-tree
@@ -17,25 +17,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'LayerCatalog',
   data() {
     return {
       isActivated: false,
-      layerList: [
-        {
-          id: 1,
-          label: '供应商',
-        },
-        {
-          id: 2,
-          label: '批发商',
-        },
-        {
-          id: 3,
-          label: '零售商',
-        },
-      ],
+      layerList: [],
       defaultProps: {
         children: 'children',
         label: 'label',
@@ -43,23 +32,45 @@ export default {
     };
   },
   computed: {
-    activeClass() {
-      return this.isActivated ? 'active' : null;
+    ...mapState(['currentMap']),
+  },
+  watch: {
+    currentMap(val) {
+      this.layerList = this.getCatalogByMapType(val);
     },
   },
   methods: {
+    // 抽屉开关
     toggleCatalog() {
       this.isActivated = !this.isActivated;
     },
+    // 获取图层列表
+    getCatalogByMapType(type) {
+      let list = [];
+      switch (type.toLowerCase()) {
+        case 'map2d':
+          list = this.$store.state.map2d.layerDirectories;
+          break;
+        case 'map3d':
+          list = this.$store.state.map3d.layerDirectories;
+          break;
+        default:
+          break;
+      }
+      return list;
+    },
   },
   mounted() {
+    this.layerList = this.getCatalogByMapType(this.currentMap.toLowerCase());
     // TODO: 有待商榷是否合理
     setTimeout(() => {
       this.isActivated = true;
     }, 100);
   },
   activated() {
-    this.isActivated = true;
+    setTimeout(() => {
+      this.isActivated = true;
+    }, 100);
   },
   deactivated() {
     this.isActivated = false;
