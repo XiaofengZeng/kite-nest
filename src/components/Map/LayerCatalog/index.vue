@@ -10,6 +10,7 @@
         ref="tree"
         highlight-current
         :props="defaultProps"
+        @check-change="toggleLayer"
       >
       </el-tree>
     </div>
@@ -58,6 +59,27 @@ export default {
           break;
       }
       return list;
+    },
+    // 加载图层
+    toggleLayer(layerNode) {
+      const layerCfg = {
+        name: layerNode.name,
+        url: layerNode.url,
+        type: layerNode.type,
+      };
+      // TODO: 确定如何进行图层叠加
+      const curMap = this.currentMap.toLowerCase();
+      switch (layerNode.type.toLowerCase()) {
+        case 'geojson':
+          if (curMap === 'map2d') {
+            this.$store.layerContainer.commit('add2dLayer', layerCfg);
+          } else if (curMap === 'map3d') {
+            this.$store.layerContainer.commit('add3dLayer', layerCfg);
+          }
+          break;
+        default:
+          break;
+      }
     },
   },
   mounted() {

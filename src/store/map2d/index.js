@@ -68,6 +68,12 @@ export default {
         id: 3,
         label: '批发商',
       },
+      {
+        id: 4,
+        label: '惠州市行政区划',
+        type: 'geojson',
+        url: 'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json',
+      },
     ],
 
     // 当前激活的功能

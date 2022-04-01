@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import user from './user';
 import map2d from './map2d';
 import map3d from './map3d';
+import layerContainer from './layerContainer';
 
 Vue.use(Vuex);
 
@@ -33,5 +34,6 @@ export default new Vuex.Store({
     user,
     map2d,
     map3d,
+    layerContainer,
   },
 });

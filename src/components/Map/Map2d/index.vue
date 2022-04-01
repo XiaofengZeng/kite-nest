@@ -9,7 +9,8 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import { transform } from 'ol/proj';
 
-import Subscriber from './mixin/Subscriber';
+import ExecutorSubscriber from './mixin/subscriber/exectuor';
+import Layer2dSubscriber from './mixin/subscriber/layer2d';
 import DrawingHelper from './mixin/interaction/DrawingHelper';
 
 export default {
@@ -19,7 +20,7 @@ export default {
       map2d: null,
     };
   },
-  mixins: [Subscriber, DrawingHelper],
+  mixins: [ExecutorSubscriber, Layer2dSubscriber, DrawingHelper],
   methods: {
     createMap2d(id, config) {
       let baseLayer = null;
