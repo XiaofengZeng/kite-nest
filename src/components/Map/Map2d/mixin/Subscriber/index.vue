@@ -1,3 +1,4 @@
+<script>
 import { mapState } from 'vuex';
 
 /* 功能执行器混入 */
@@ -32,3 +33,4 @@ export default {
     },
   },
 };
+</script>

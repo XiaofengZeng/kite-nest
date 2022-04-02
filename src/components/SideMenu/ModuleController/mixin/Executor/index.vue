@@ -1,4 +1,6 @@
+<script>
 /* 功能执行器混入 */
+
 export default {
   data() {
     return {
@@ -36,3 +38,4 @@ export default {
     },
   },
 };
+</script>
