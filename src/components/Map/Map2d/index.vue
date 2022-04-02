@@ -12,6 +12,7 @@ import { transform } from 'ol/proj';
 import ExecutorSubscriber from './mixin/subscriber/exectuor';
 import Layer2dSubscriber from './mixin/subscriber/layer2d';
 import DrawingHelper from './mixin/interaction/DrawingHelper';
+import Layer2dLoader from './mixin/layer/Layer2dLoader';
 
 export default {
   name: 'Map2d',
@@ -20,7 +21,7 @@ export default {
       map2d: null,
     };
   },
-  mixins: [ExecutorSubscriber, Layer2dSubscriber, DrawingHelper],
+  mixins: [ExecutorSubscriber, Layer2dSubscriber, DrawingHelper, Layer2dLoader],
   methods: {
     createMap2d(id, config) {
       let baseLayer = null;

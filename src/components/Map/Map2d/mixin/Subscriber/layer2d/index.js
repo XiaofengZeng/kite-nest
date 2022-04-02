@@ -10,24 +10,19 @@ export default {
     ...mapState('layerContainer', ['map2dLayers']),
   },
   watch: {
-    map2dLayers(newList) {
-      if (newList.length) {
-        newList.forEach((item) => {
-          // 执行组件中的方法
-          this[item.name](...item.args);
-        });
-        // 重置执行方法列表
-        this.$store.commit('map2d/executor/resetMethodList');
-      }
-    },
-    shutdownList(newList) {
-      if (newList.length) {
-        newList.forEach(() => {
-          // 执行组件中的方法
-          this.shutdown();
-        });
-        // 重置执行关闭列表
-        this.$store.commit('map2d/executor/resetShutdownList');
+    map2dLayers(newList, oldList) {
+      const newListLength = newList.length;
+      const oldListLength = oldList.length;
+      let lyrCfg;
+      if (newListLength - oldListLength > 0) {
+        // 添加图层
+        lyrCfg = newList[newList.length - 1];
+        this.addLayer(lyrCfg);
+      } else {
+        // 移除图层
+        // TODO: 获取两数组差别数据
+        lyrCfg = null;
+        this.removeLayer(lyrCfg);
       }
     },
   },
