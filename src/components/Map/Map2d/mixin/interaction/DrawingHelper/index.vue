@@ -1,3 +1,4 @@
+<script>
 /* 绘制帮助器混入 */
 
 import { Vector as VectorLayer } from 'ol/layer';
@@ -267,3 +268,4 @@ export default {
     },
   },
 };
+</script>
