@@ -5,7 +5,6 @@
       <el-tree
         :data="layerList"
         show-checkbox
-        default-expand-all
         node-key="id"
         ref="tree"
         highlight-current
@@ -28,7 +27,7 @@ export default {
       layerList: [],
       defaultProps: {
         children: 'children',
-        label: 'label',
+        label: 'name',
       },
     };
   },
@@ -62,24 +61,27 @@ export default {
     },
     // 加载图层
     toggleLayer(layerNode, checked) {
-      const layerCfg = {
-        id: layerNode.id,
-        name: layerNode.name,
-        url: layerNode.url,
-        type: layerNode.type,
-      };
       const curMap = this.currentMap.toLowerCase();
-      if (checked) {
-        if (curMap === 'map2d') {
-          this.$store.layerContainer.commit('add2dLayer', layerCfg);
-        } else if (curMap === 'map3d') {
-          this.$store.layerContainer.commit('add3dLayer', layerCfg);
-        }
-      } else {
-        if (curMap === 'map2d') {
-          this.$store.layerContainer.commit('remove2dLayer', layerCfg);
-        } else if (curMap === 'map3d') {
-          this.$store.layerContainer.commit('remove3dLayer', layerCfg);
+      if (!layerNode.children) {
+        // 当没有子节点，则表示该节点是图层
+        const layerInfo = {
+          id: layerNode.id,
+          name: layerNode.name,
+          type: layerNode.type,
+          url: layerNode.url,
+        };
+        if (checked) {
+          if (curMap === 'map2d') {
+            this.$store.commit('layerContainer/add2dLayer', layerInfo);
+          } else if (curMap === 'map3d') {
+            this.$store.commit('layerContainer/add3dLayer', layerInfo);
+          }
+        } else {
+          if (curMap === 'map2d') {
+            this.$store.commit('layerContainer/remove2dLayer', layerInfo);
+          } else if (curMap === 'map3d') {
+            this.$store.commit('layerContainer/remove3dLayer', layerInfo);
+          }
         }
       }
     },

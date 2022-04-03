@@ -57,22 +57,31 @@ export default {
     // 图层资源相关配置
     layerDirectories: [
       {
-        id: 1,
-        label: '供应商',
+        id: 't001',
+        name: '供应商',
+        children: [
+          {
+            id: 't001-1',
+            name: '供应商-1',
+            type: '',
+          },
+        ],
       },
       {
-        id: 2,
-        label: '零售商',
+        id: 't002',
+        name: '零售商',
+        type: '',
       },
       {
-        id: 3,
-        label: '批发商',
+        id: 't003',
+        name: '批发商',
+        type: '',
       },
       {
-        id: 4,
-        label: '惠州市行政区划',
+        id: 't004',
+        name: '惠州市行政区划',
         type: 'geojson',
-        url: 'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json',
+        url: 'https://geo.datav.aliyun.com/areas_v3/bound/441300_full.json',
       },
     ],
 

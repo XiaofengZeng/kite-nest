@@ -1,33 +1,36 @@
 export default {
   namespaced: true,
   state: {
-    map2dLayers: [],
-    map3dLayers: [],
+    lastestAddedLayer2dInfo: null,
+    lastestDeletedLayer2dInfo: null,
+
+    lastestAddedLayer3dInfo: null,
+    lastestDeletedLayer3dInfo: null,
   },
   actions: {
   },
   mutations: {
     // 二维地图图层操作
-    add2dLayer(state, lyrCfg) {
-      state.map2dLayers.push(lyrCfg);
+    add2dLayer(state, lyrInfo) {
+      state.lastestAddedLayer2dInfo = lyrInfo;
     },
-    remove2dLayer(state, lyrCfg) {
-      state.map2dLayers = state.map2dLayers.filter((lyr) => lyr.id !== lyrCfg.id);
+    remove2dLayer(state, lyrInfo) {
+      state.lastestDeletedLayer2dInfo = lyrInfo;
     },
-    clear2dLayers(state) {
-      state.map2dLayers = [];
-    },
+    // clear2dLayers(state) {
+    //   state.map2dLayers = [];
+    // },
 
     // 三维地图图层操作
-    add3dLayer(state, lyrCfg) {
-      state.map3dLayers.push(lyrCfg);
+    add3dLayer(state, lyrInfo) {
+      state.lastestAddedLayer3dInfo = lyrInfo;
     },
-    remove3dLayer(state, lyrCfg) {
-      state.map2dLayers = state.map2dLayers.filter((lyr) => lyr.id !== lyrCfg.id);
+    remove3dLayer(state, lyrInfo) {
+      state.lastestDeletedLayer3dInfo = lyrInfo;
     },
-    clear3dLayers(state) {
-      state.map2dLayers = [];
-    },
+    // clear3dLayers(state) {
+    //   state.map2dLayers = [];
+    // },
   },
   getters: {
 

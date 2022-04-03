@@ -7,6 +7,6 @@ const instance = axios.create({
 
 instance.interceptors.request.use((config) => config);
 
-instance.interceptors.request.use((res) => res, (err) => Promise.reject(err));
+instance.interceptors.response.use((res) => res, (err) => Promise.reject(err));
 
 export default instance;

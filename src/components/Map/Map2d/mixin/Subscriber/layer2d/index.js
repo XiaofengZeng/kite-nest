@@ -7,23 +7,14 @@ export default {
     };
   },
   computed: {
-    ...mapState('layerContainer', ['map2dLayers']),
+    ...mapState('layerContainer', ['lastestAddedLayer2dInfo', 'lastestDeletedLayer2dInfo']),
   },
   watch: {
-    map2dLayers(newList, oldList) {
-      const newListLength = newList.length;
-      const oldListLength = oldList.length;
-      let lyrCfg;
-      if (newListLength - oldListLength > 0) {
-        // 添加图层
-        lyrCfg = newList[newList.length - 1];
-        this.addLayer(lyrCfg);
-      } else {
-        // 移除图层
-        // TODO: 获取两数组差别数据
-        lyrCfg = null;
-        this.removeLayer(lyrCfg);
-      }
+    lastestAddedLayer2dInfo(lyrInfo) {
+      this.addLayer(lyrInfo);
+    },
+    lastestDeletedLayer2dInfo(lyrInfo) {
+      this.removeLayer(lyrInfo);
     },
   },
 };
