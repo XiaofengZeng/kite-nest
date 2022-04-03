@@ -6,6 +6,8 @@ import './style/element-kn-primary/index.css'; // ElementUI自定义主题色 #f
 import * as Cesium from 'cesium/Cesium';
 import widget from 'cesium/Widgets/widgets.css';
 
+import request from './api';
+
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -17,6 +19,8 @@ import './style/kn-ol-custom.less';
 // 定义为全局变量，以便调用
 Vue.prototype.Cesium = Cesium;
 Vue.prototype.Widgets = widget;
+
+Vue.prototype.knRequest = request;
 
 Vue.config.productionTip = false;
 

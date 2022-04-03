@@ -53,6 +53,38 @@ export default {
         ],
       },
     ],
+
+    // 图层资源相关配置
+    layerDirectories: [
+      {
+        id: 't001',
+        name: '供应商',
+        children: [
+          {
+            id: 't001-1',
+            name: '供应商-1',
+            type: '',
+          },
+        ],
+      },
+      {
+        id: 't002',
+        name: '零售商',
+        type: '',
+      },
+      {
+        id: 't003',
+        name: '批发商',
+        type: '',
+      },
+      {
+        id: 't004',
+        name: '惠州市行政区划',
+        type: 'geojson',
+        url: 'https://geo.datav.aliyun.com/areas_v3/bound/441300_full.json',
+      },
+    ],
+
     // 当前激活的功能
     activatedModules: [],
     activatedModule: '',

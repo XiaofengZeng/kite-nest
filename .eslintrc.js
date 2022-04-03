@@ -23,5 +23,7 @@ module.exports = {
     'func-names': ['error', 'never'],
     // 关闭 下划线标识符
     'no-underscore-dangle': 'off',
+    // 关闭 else语句不能单独if语句
+    'no-lonely-if': 'off',
   },
 };
