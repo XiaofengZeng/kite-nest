@@ -1,5 +1,6 @@
 <script>
 import VectorLayer from '../VectorLayer';
+import TileLayer from '../TileLayer';
 
 export default {
   name: 'Layer2dLoader',
@@ -7,13 +8,16 @@ export default {
     return {
     };
   },
-  mixins: [VectorLayer],
+  mixins: [VectorLayer, TileLayer],
   methods: {
     addLayer(lyrInfo) {
       // TODO: 根据type加载图层
       switch (lyrInfo.type.toLowerCase()) {
         case 'geojson':
           this.addVectorLayerWithGeoJSON(lyrInfo);
+          break;
+        case 'wmts':
+          this.addTileLayerWithWMTS(lyrInfo);
           break;
         default:
           console.log('default');

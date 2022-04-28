@@ -10,6 +10,7 @@
         highlight-current
         :props="defaultProps"
         @check-change="toggleLayer"
+        :default-checked-keys="defaultCheckedKeys"
       >
       </el-tree>
     </div>
@@ -25,6 +26,7 @@ export default {
     return {
       isActivated: false,
       layerList: [],
+      defaultCheckedKeys: [],
       defaultProps: {
         children: 'children',
         label: 'name',
@@ -36,7 +38,9 @@ export default {
   },
   watch: {
     currentMap(val) {
-      this.layerList = this.getCatalogByMapType(val);
+      const catalog = this.getCatalogByMapType(val);
+      this.layerList = catalog.list;
+      this.defaultCheckedKeys = catalog.keys;
     },
   },
   methods: {
@@ -46,18 +50,24 @@ export default {
     },
     // 获取图层列表
     getCatalogByMapType(type) {
-      let list = [];
+      let layerlist = [];
+      let defaultCheckedList = [];
       switch (type.toLowerCase()) {
         case 'map2d':
-          list = this.$store.state.map2d.layerDirectories;
+          layerlist = this.$store.state.map2d.layerDirectories;
+          defaultCheckedList = this.$store.state.map2d.defaultCheckedKeys;
           break;
         case 'map3d':
-          list = this.$store.state.map3d.layerDirectories;
+          layerlist = this.$store.state.map3d.layerDirectories;
+          defaultCheckedList = this.$store.state.map2d.defaultCheckedKeys;
           break;
         default:
           break;
       }
-      return list;
+      return {
+        list: layerlist,
+        keys: defaultCheckedList,
+      };
     },
     // 加载图层
     toggleLayer(layerNode, checked) {
@@ -87,7 +97,9 @@ export default {
     },
   },
   mounted() {
-    this.layerList = this.getCatalogByMapType(this.currentMap.toLowerCase());
+    const catalog = this.getCatalogByMapType(this.currentMap.toLowerCase());
+    this.layerList = catalog.list;
+    this.defaultCheckedKeys = catalog.keys;
     // TODO: 有待商榷是否合理
     setTimeout(() => {
       this.isActivated = true;

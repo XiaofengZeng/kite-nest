@@ -25,5 +25,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     // 关闭 else语句不能单独if语句
     'no-lonely-if': 'off',
+    // 关闭 自增
+    'no-plusplus': 'off',
   },
 };

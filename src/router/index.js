@@ -58,6 +58,8 @@ const router = new VueRouter({
 
 // 全局前置路由守卫
 router.beforeEach((to, from, next) => {
+  debugger;
+  console.log(to);
   // 鉴权
   if (to.meta.isLogin) {
     next();
