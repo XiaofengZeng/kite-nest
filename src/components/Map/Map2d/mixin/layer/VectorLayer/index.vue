@@ -84,7 +84,7 @@ export default {
       this.knRequest.get(opt.url).then((response) => {
         const features = new GeoJSON().readFeatures(response.data, {
           dataProjection: 'EPSG:4326', // GeoJSON数据投影坐标系
-          featureProjection: 'EPSG:3857', // ol.Feature投影坐标系
+          featureProjection: 'EPSG:3857', // ol.Feature地图投影坐标系
         });
         const source = new VectorSource({
           features,

@@ -55,30 +55,52 @@ export default {
     ],
 
     // 图层资源相关配置
+    defaultCheckedKeys: ['t001-1'],
     layerDirectories: [
       {
         id: 't001',
-        name: '供应商',
+        name: '底图',
+        disabled: true,
         children: [
           {
             id: 't001-1',
+            name: 'OpenStreeMap',
+            tag: 'baseLayer',
+            type: 'wmts',
+            url: 'https://geo.datav.aliyun.com/areas_v3/bound/441300_full.json',
+          },
+          {
+            id: 't001-2',
+            name: '天地图',
+            tag: 'baseLayer',
+            type: 'wmts',
+            url: 'http://t0.tianditu.gov.cn/img_c/wmts?LAYER=img&tk=20a24b65d7901cf54d9bd05843e70f5b',
+          },
+        ],
+      },
+      {
+        id: 't002',
+        name: '供应商',
+        children: [
+          {
+            id: 't002-1',
             name: '供应商-1',
             type: '',
           },
         ],
       },
       {
-        id: 't002',
+        id: 't003',
         name: '零售商',
         type: '',
       },
       {
-        id: 't003',
+        id: 't004',
         name: '批发商',
         type: '',
       },
       {
-        id: 't004',
+        id: 't005',
         name: '惠州市行政区划',
         type: 'geojson',
         url: 'https://geo.datav.aliyun.com/areas_v3/bound/441300_full.json',
