@@ -34,6 +34,9 @@ importers:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.6.3)
     devDependencies:
+      '@kite-nest/tsconfig':
+        specifier: workspace:^
+        version: link:../../packages/tsconfig
       '@vitejs/plugin-vue':
         specifier: ^5.2.1
         version: 5.2.1(vite@6.0.11)(vue@3.5.13(typescript@5.6.3))
@@ -51,6 +54,8 @@ importers:
         version: 2.2.0(typescript@5.6.3)
 
   packages/shared: {}
+
+  packages/tsconfig: {}
 
   packages/ui: {}
 
