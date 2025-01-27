@@ -1,47 +1,21 @@
 {
   "name": "kite-nest",
-  "version": "0.1.0",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^0.26.1",
-    "cesium": "^1.91.0",
-    "copy-webpack-plugin": "^5.1.2",
-    "core-js": "^3.6.5",
-    "dayjs": "^1.11.0",
-    "element-ui": "^2.15.6",
-    "ol": "^6.13.0",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^5.0.1",
-    "@vue/cli-plugin-eslint": "^5.0.1",
-    "@vue/cli-plugin-router": "^5.0.1",
-    "@vue/cli-plugin-vuex": "~4.5.15",
-    "@vue/cli-service": "^5.0.1",
-    "@vue/eslint-config-airbnb": "^5.0.2",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-vue": "^7.0.0",
-    "less": "^3.0.4",
-    "less-loader": "^5.0.0",
-    "lint-staged": "^12.3.5",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,jsx,vue}": [
-      "vue-cli-service lint",
-      "git add"
-    ]
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.5",
+    "vue-tsc": "^2.2.0"
   }
 }
