@@ -1,1 +1,3 @@
-export { default } from './components'
+import KiteUI from './src/components'
+
+export default KiteUI

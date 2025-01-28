@@ -3,18 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "peerDependencies": {
-    "vue": ">=3.0.0"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["ui"],
   "author": "",
   "license": "ISC",
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
   "devDependencies": {
-    "@kite-nest/tsconfig": "workspace:^",
-    "sass": "^1.83.4",
-    "sass-embedded": "^1.83.4"
+    "@kite-nest/tsconfig": "workspace:^"
   }
 }
