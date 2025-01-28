@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "@kite-nest/tsconfig/tsconfig.json"
+  ],
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "dist",
+    "lib": ["dom"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.vue"
+  ]
+}

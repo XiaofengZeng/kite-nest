@@ -2,11 +2,19 @@
   "name": "@kite-nest/ui",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "type": "module",
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["ui"],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@kite-nest/tsconfig": "workspace:^",
+    "sass": "^1.83.4",
+    "sass-embedded": "^1.83.4"
+  }
 }

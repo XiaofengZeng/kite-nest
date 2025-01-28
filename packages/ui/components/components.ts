@@ -1,0 +1,1 @@
+export { KSvgIcon } from "./svg-icon"
