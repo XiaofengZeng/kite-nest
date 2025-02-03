@@ -3,8 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/kite-ui.js",
+      "default": "./dist/kite-ui.umd.cjs"
+    },
+    "./style.css": {
+      "import": "./dist/kite-ui.css",
+      "require": "./dist/kite-ui.css"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build"
   },
   "keywords": ["ui"],
   "author": "",

@@ -1,14 +1,51 @@
 {
+  // 继承tsconfig，已有的配置会被覆盖
   "extends": [
     "@kite-nest/tsconfig/tsconfig.json"
   ],
+  // 编译配置项
   "compilerOptions": {
+    "target": "ESNext", // 编译目标，影响ES语法
+    "module": "ESNext", // 模块化编译目标，影响模块导入的语法
+    "moduleResolution": "Bundler", // 模块解析模式，浏览器下采用Bundler
+    "lib": ["DOM", "ESNext"], // 内置类型描述文件
+    "baseUrl": "./",
+    "outDir": "./dist", // 不指定输出目录，则js会输出到当前ts所在文件夹下
+    "rootDir": "src", // 指定编译的根目录
+    "composite": true, // 增量构建
+    "incremental": true, // 增量构建
+    "paths": { // 路径别名，需要与baseUrl配合使用，决定如何处理import语句
+      "@/*": ["src/*"]
+    },
+    /* 编译检查 */
+    "allowJs": true, // 是否对JS进行编译
+    "checkJs": true, // 是否检查JS文件
+    "noEmit": false, // 是否进行编译或只进行语法检查。该工程是库，需要声明类型
+    "noEmitOnError": true, // 输出文件时，如果存在错误，则不输出文件
+    "strict": true, // 所有严格检查的开关
+    "noImplicitAny": true, // 不允许使用隐式any类型
+    "noImplicitThis": true, // 不允许使用不明确的this上下文
+    "strictNullChecks": true, // 对null值需要检查
+
+    /* 编译处理 */
+    "removeComments": true, // 移除注释
+
+    /* 声明文件生成 */
     "declaration": true,
-    "outDir": "dist"
+    "declarationDir": "./dist/types", // 生成d.ts文件
+    "emitDeclarationOnly": true,
+
+    /* 编译后处理 */
+    "listEmittedFiles": true, // 输出编译后的文件列表
+    "listFiles": true // 参与本次编译的文件列表
   },
+  // 需要编译那些文件
   "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
+    "src/**/*", // 不指定文件后缀名，则包括.ts、.tsx和.d.ts
     "src/**/*.vue"
-  ]
+  ],
+  // "exclude": [
+  //   "src/**/index.ts", // 排除index.ts文件
+  //   "src/test/**/*.test.ts", // 排除test文件夹下的所有test.ts文件
+  // ]
 }

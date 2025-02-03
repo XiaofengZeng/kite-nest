@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { computed, useTemplateRef } from 'vue'
 
-interface ISvgIconProps {
+type ISvgIconProps = {
   type?: string // icon类型，如果没有传入hover和activated的填充颜色，默认根据类型进行设置
   size?: string
   initColor?: string  // 常规颜色
