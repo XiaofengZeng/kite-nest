@@ -10,8 +10,8 @@
 <script setup lang="ts">
 import { computed, useTemplateRef } from 'vue'
 
-type ISvgIconProps = {
-  type?: string // icon类型，如果没有传入hover和activated的填充颜色，默认根据类型进行设置
+export interface IKSvgIconProps {
+  type?: 'primary' | 'danger' // icon类型，如果没有传入hover和activated的填充颜色，默认根据类型进行设置
   size?: string
   initColor?: string  // 常规颜色
   hoverColor?: string  // 鼠标悬停时颜色
@@ -19,21 +19,20 @@ type ISvgIconProps = {
   isActive?: boolean
 }
 
+defineOptions({
+  name: 'k-svg-icon',
+})
+
 /**
  * 类型颜色
  * TODO: 区分不同theme下的颜色，useComponentStore().themeType
  */
 const typeColor = {
-  primary: 'var(--text-color3)',
+  primary: '#0f74fe',
   danger: '#f56c6c',
-  hovers: 'var(--text-color8)',
-  // TODO: 增加theme的区分后，解开以下注释
-  // primary: 'var(--iconTypePrimaryColor)',
-  // danger: 'var(--iconTypeDangerColor)',
-  // hovers: 'var(--text-color8)', // FIXME: 不同主题，使用的配色不同。这个应该与primary的保持一致，并移除hovers类型
 }
 
-const props = withDefaults(defineProps<ISvgIconProps>(), {
+const props = withDefaults(defineProps<IKSvgIconProps>(), {
   type: 'primary',
   initColor: '#666',
   size: '1em',
@@ -44,16 +43,16 @@ const iconRef = useTemplateRef('iconRef')
 const iconClasses = computed(() => {
   return [
     'svg-icon',
-    props.isActive ? 'is-active' : '',
+    props?.isActive ? 'is-active' : '',
   ]
 })
 
 const iconHoverColor = computed(() => {
-  return props.hoverColor || typeColor[props.type]
+  return props?.hoverColor || typeColor[props?.type]
 })
 
 const iconActivatedColor = computed(() => {
-  return props.activatedColor || typeColor[props.type]
+  return props?.activatedColor || typeColor[props?.type]
 })
 
 defineExpose({
