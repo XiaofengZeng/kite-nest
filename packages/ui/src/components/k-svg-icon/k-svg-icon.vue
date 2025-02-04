@@ -25,7 +25,6 @@ defineOptions({
 
 /**
  * 类型颜色
- * TODO: 区分不同theme下的颜色，useComponentStore().themeType
  */
 const typeColor = {
   primary: '#0f74fe',
@@ -43,16 +42,16 @@ const iconRef = useTemplateRef('iconRef')
 const iconClasses = computed(() => {
   return [
     'svg-icon',
-    props?.isActive ? 'is-active' : '',
+    props.isActive ? 'is-active' : '',
   ]
 })
 
 const iconHoverColor = computed(() => {
-  return props?.hoverColor || typeColor[props?.type]
+  return props.hoverColor || typeColor[props.type]
 })
 
 const iconActivatedColor = computed(() => {
-  return props?.activatedColor || typeColor[props?.type]
+  return props.activatedColor || typeColor[props.type]
 })
 
 defineExpose({
