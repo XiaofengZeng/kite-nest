@@ -9,14 +9,53 @@
     "preview": "vite preview",
     "demo-webgl:dev": "cd apps/demo-webgl && vite",
     "ui:test": "pnpm -r run test --filter @kite-nest/ui",
-    "shared:test": "pnpm -r run test --filter @kite-nest/shared"
+    "shared:test": "pnpm -r run test --filter @kite-nest/shared",
+    "prepare": "husky",
+    "lint": "eslint --cache --fix .",
+    "prettify": "prettier --cache --ignore-unknown --write ."
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
+  "lint-staged": {
+    "*.{js,mjs.cjs,ts,mts,cts,jsx,tsx}": [
+      "pnpm lint",
+      "pnpm prettify"
+    ],
+    "{!(package)*.json,*.code-snippets,.!({browserslist,npm,nvm})*rc}": [
+      "prettier --cache --write --parser json"
+    ],
+    "*.{css,scss}": [
+      "stylelint --fix"
+    ],
+    "package.json": [
+      "prettier --cache --write"
+    ],
+    "*.vue": [
+      "prettier --write",
+      "eslint --cache --fix"
+    ],
+    "*.{css,scss,html}": [
+      "prettier --cache --ignore-unknown --write"
+    ],
+    "*.md": [
+      "prettier --cache --ignore-unknown --write"
+    ]
   },
   "dependencies": {
     "vue": "^3.5.13"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
+    "commitlint": "^19.7.1",
+    "cz-git": "^1.11.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
     "sass": "^1.83.4",
     "sass-embedded": "^1.83.4",
     "typescript": "~5.6.2",
