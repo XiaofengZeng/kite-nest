@@ -45,6 +45,9 @@ importers:
 
   apps/demo-webgl:
     dependencies:
+      '@kite-nest/prettier-config':
+        specifier: workspace:^
+        version: link:../../packages/prettier-config
       '@kite-nest/shared':
         specifier: workspace:^
         version: link:../../packages/shared
@@ -67,6 +70,12 @@ importers:
       '@vue/tsconfig':
         specifier: ^0.7.0
         version: 0.7.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))
+      eslint:
+        specifier: ^9.19.0
+        version: 9.19.0(jiti@2.4.2)
+      prettier:
+        specifier: 3.4.2
+        version: 3.4.2
       typescript:
         specifier: ~5.6.2
         version: 5.6.3
@@ -97,6 +106,12 @@ importers:
       typescript-eslint:
         specifier: ^8.23.0
         version: 8.23.0(eslint@9.19.0(jiti@2.4.2))(typescript@5.7.2)
+
+  packages/prettier-config:
+    devDependencies:
+      prettier:
+        specifier: 3.4.2
+        version: 3.4.2
 
   packages/shared: {}
 
@@ -1219,6 +1234,11 @@ packages:
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+
+  prettier@3.4.2:
+    resolution: {integrity: sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
@@ -2659,6 +2679,8 @@ snapshots:
       source-map-js: 1.2.1
 
   prelude-ls@1.2.1: {}
+
+  prettier@3.4.2: {}
 
   punycode@2.3.1: {}
 
