@@ -63,7 +63,6 @@
     "sass": "^1.83.4",
     "sass-embedded": "^1.83.4",
     "typescript": "~5.6.2",
-    "unplugin-vue-define-options": "^1.5.5",
     "vite": "^6.0.5",
     "vite-plugin-dts": "^4.5.0",
     "vue-tsc": "^2.2.0"
