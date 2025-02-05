@@ -1,6 +1,7 @@
-export * from './components'
+import KiteUI from './components'
+
 export * from './test'
 export * from './theme-chalk'
 export * from './tools'
 
-export default {}
+export default KiteUI
