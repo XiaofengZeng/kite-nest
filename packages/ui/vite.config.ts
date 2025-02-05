@@ -1,19 +1,19 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import dts from "vite-plugin-dts";
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import dts from 'vite-plugin-dts'
 
 export default defineConfig({
   build: {
-    outDir: "dist",
+    outDir: 'dist',
     minify: false,
     rollupOptions: {
       //忽略打包vue文件
-      external: ["vue"],
-      input: ["kite-ui.ts"],
+      external: ['vue'],
+      input: ['kite-ui.ts'],
       output: {
         globals: {
           kiteUi: 'kite-ui',
-          vue: "Vue",
+          vue: 'Vue',
         },
       },
       // output: [
@@ -34,16 +34,16 @@ export default defineConfig({
       // ],
     },
     lib: {
-      entry: "./kite-ui.ts",
-      name: "KiteUI",
-      fileName: "kite-ui",
-      formats: ["es", "umd"],
+      entry: './kite-ui.ts',
+      name: 'KiteUI',
+      fileName: 'kite-ui',
+      formats: ['es', 'umd'],
     },
   },
   plugins: [
     vue(),
     dts({
-      outDir: ["dist/types"],
+      outDir: ['dist/types'],
     }),
   ],
-});
+})

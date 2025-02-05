@@ -20,7 +20,9 @@
   "scripts": {
     "build": "vite build"
   },
-  "keywords": ["ui"],
+  "keywords": [
+    "ui"
+  ],
   "author": "",
   "license": "ISC",
   "peerDependencies": {

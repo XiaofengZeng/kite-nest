@@ -12,7 +12,7 @@
     "shared:test": "pnpm -r run test --filter @kite-nest/shared",
     "prepare": "husky",
     "lint": "eslint --cache --fix .",
-    "prettify": "prettier --cache --ignore-unknown --write ."
+    "prettify": "pnpm exec prettier --cache -u -w ."
   },
   "config": {
     "commitizen": {
@@ -25,23 +25,23 @@
       "pnpm prettify"
     ],
     "{!(package)*.json,*.code-snippets,.!({browserslist,npm,nvm})*rc}": [
-      "prettier --cache --write --parser json"
+      "pnpm exec prettier --cache -w --parser json"
     ],
     "*.{css,scss}": [
       "stylelint --fix"
     ],
     "package.json": [
-      "prettier --cache --write"
+      "pnpm exec prettier --cache -w"
     ],
     "*.vue": [
-      "prettier --write",
+      "pnpm exec prettier -w",
       "eslint --cache --fix"
     ],
     "*.{css,scss,html}": [
-      "prettier --cache --ignore-unknown --write"
+      "pnpm exec prettier --cache -u -w"
     ],
     "*.md": [
-      "prettier --cache --ignore-unknown --write"
+      "pnpm exec prettier --cache -u -w"
     ]
   },
   "dependencies": {
@@ -51,11 +51,15 @@
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
     "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/eslint-config-typescript": "^14.3.0",
     "@vue/tsconfig": "^0.7.0",
     "commitlint": "^19.7.1",
     "cz-git": "^1.11.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-vue": "^9.32.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
+    "prettier": "3.4.2",
     "sass": "^1.83.4",
     "sass-embedded": "^1.83.4",
     "typescript": "~5.6.2",

@@ -1,17 +1,17 @@
-import tseslint from "typescript-eslint";
-import pluginVue from "eslint-plugin-vue";
+import tseslint from 'typescript-eslint'
+import pluginVue from 'eslint-plugin-vue'
 
 export default [
   {
-    files: ["**/*.vue"],
+    files: ['**/*.vue'],
   },
-  ...pluginVue.configs["flat/essential"],
+  ...pluginVue.configs['flat/essential'],
   {
-    files: ["**/*.vue"],
+    files: ['**/*.vue'],
     languageOptions: {
       parserOptions: {
         parser: tseslint.parser,
       },
     },
   },
-];
+]

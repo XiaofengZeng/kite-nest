@@ -1,1 +1,1 @@
-export { KSvgIcon } from "./k-svg-icon"
+export { KSvgIcon } from './k-svg-icon'

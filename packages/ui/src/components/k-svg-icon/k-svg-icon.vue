@@ -1,8 +1,5 @@
 <template>
-  <icon
-    ref="iconRef"
-    :class="iconClasses"
-  >
+  <icon ref="iconRef" :class="iconClasses">
     <slot />
   </icon>
 </template>
@@ -13,8 +10,8 @@ import { computed, useTemplateRef } from 'vue'
 export interface IKSvgIconProps {
   type?: 'primary' | 'danger' // icon类型，如果没有传入hover和activated的填充颜色，默认根据类型进行设置
   size?: string
-  initColor?: string  // 常规颜色
-  hoverColor?: string  // 鼠标悬停时颜色
+  initColor?: string // 常规颜色
+  hoverColor?: string // 鼠标悬停时颜色
   activatedColor?: string // 激活时的颜色
   isActive?: boolean
 }
@@ -40,10 +37,7 @@ const props = withDefaults(defineProps<IKSvgIconProps>(), {
 const iconRef = useTemplateRef('iconRef')
 
 const iconClasses = computed(() => {
-  return [
-    'svg-icon',
-    props.isActive ? 'is-active' : '',
-  ]
+  return ['svg-icon', props.isActive ? 'is-active' : '']
 })
 
 const iconHoverColor = computed(() => {
