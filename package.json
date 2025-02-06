@@ -3,43 +3,23 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "pnpm@9.5.0",
   "scripts": {
     "dev:demo-webgl": "cd apps/demo-webgl && vite",
     "build": "pnpm -r run build",
     "build:ui": "cd packages/ui && pnpm build",
     "prepare": "husky",
-    "lint": "eslint --cache --fix .",
-    "prettify": "pnpm exec prettier --cache -u -w ."
+    "format": "pnpm exec prettier --write --cache .",
+    "lint": "eslint . --max-warnings 0 --cache",
+    "lint:fix": "pnpm run lint --fix"
+  },
+  "engines": {
+    "node": ">= 18"
   },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-git"
     }
-  },
-  "lint-staged": {
-    "*.{js,mjs.cjs,ts,mts,cts,jsx,tsx}": [
-      "pnpm lint",
-      "pnpm prettify"
-    ],
-    "{!(package)*.json,*.code-snippets,.!({browserslist,npm,nvm})*rc}": [
-      "pnpm exec prettier --cache -w --parser json"
-    ],
-    "*.{css,scss}": [
-      "stylelint --fix"
-    ],
-    "package.json": [
-      "pnpm exec prettier --cache -w"
-    ],
-    "*.vue": [
-      "pnpm exec prettier -w",
-      "eslint --cache --fix"
-    ],
-    "*.{css,scss,html}": [
-      "pnpm exec prettier --cache -u -w"
-    ],
-    "*.md": [
-      "pnpm exec prettier --cache -u -w"
-    ]
   },
   "dependencies": {
     "vue": "^3.5.13"
@@ -63,5 +43,8 @@
     "vite": "^6.0.5",
     "vite-plugin-dts": "^4.5.0",
     "vue-tsc": "^2.2.0"
+  },
+  "lint-staged": {
+    "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --fix"
   }
 }
