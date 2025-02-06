@@ -4,12 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview",
-    "demo-webgl:dev": "cd apps/demo-webgl && vite",
-    "ui:test": "pnpm -r run test --filter @kite-nest/ui",
-    "shared:test": "pnpm -r run test --filter @kite-nest/shared",
+    "dev:demo-webgl": "cd apps/demo-webgl && vite",
+    "build": "pnpm -r run build",
+    "build:ui": "cd packages/ui && pnpm build",
     "prepare": "husky",
     "lint": "eslint --cache --fix .",
     "prettify": "pnpm exec prettier --cache -u -w ."
