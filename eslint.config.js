@@ -33,7 +33,7 @@ export default [
   {
     name: 'disable-typecheck-in-js-files',
     files: ['**/*.{js,mjs,cjs}'],
-    ...tselint.configs.disableTypeChecked,
+    rules: tselint.configs.disableTypeChecked.rules,
   },
   ...tselint.config({
     files: ['**/*.{ts,mts,cts}'],
