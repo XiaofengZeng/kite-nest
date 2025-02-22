@@ -16,26 +16,15 @@
   "engines": {
     "node": ">= 18"
   },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-git"
-    }
-  },
   "dependencies": {
     "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.7.1",
-    "@commitlint/config-conventional": "^19.7.1",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/eslint-config-typescript": "^14.3.0",
     "@vue/tsconfig": "^0.7.0",
-    "commitlint": "^19.7.1",
-    "cz-git": "^1.11.0",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-vue": "^9.32.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.4.3",
     "prettier": "3.4.2",
     "sass": "^1.83.4",
     "sass-embedded": "^1.83.4",
@@ -43,8 +32,5 @@
     "vite": "^6.0.5",
     "vite-plugin-dts": "^4.5.0",
     "vue-tsc": "^2.2.0"
-  },
-  "lint-staged": {
-    "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --fix"
   }
 }
