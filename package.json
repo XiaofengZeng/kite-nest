@@ -8,7 +8,6 @@
     "dev:demo-webgl": "cd apps/demo-webgl && vite",
     "build": "pnpm -r run build",
     "build:ui": "cd packages/ui && pnpm build",
-    "prepare": "husky",
     "format": "pnpm exec prettier --write --cache .",
     "lint": "eslint . --max-warnings 0 --cache",
     "lint:fix": "pnpm run lint --fix"
