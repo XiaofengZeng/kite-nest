@@ -1,63 +1,61 @@
-// import kiteEslint from '@kite-nest/eslint-config'
-import pluginVue from 'eslint-plugin-vue' // eslint vue插件
-import vueEslintParser from 'vue-eslint-parser' // vue解析器，用于解析<template>
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript' // 针对vue+ts的配置
-import prettier from 'eslint-plugin-prettier' // 将prettier错误通过eslint展示
-import tselint from 'typescript-eslint' // 支持TS的Eslint和prettier规则
+import globals from 'globals'
+import pluginJs from '@eslint/js'
+import tseslint from 'typescript-eslint'
+import pluginVue from 'eslint-plugin-vue'
+import parserVue from 'vue-eslint-parser'
+import stylistic from '@stylistic/eslint-plugin'
 
+/** @type {import('eslint').Linter.Config[]} */
 export default [
-  // ...kiteEslint.configs['flat/recommended'],
   {
-    name: 'files-to-lint',
-    files: ['**/*.{js,mjs,cjs}', '**/*.{ts,mts,cts}', '**/*.{jsx,tsx}', '**/*.{vue}'],
+    ignores: [
+      '**/node_modules',
+      '**/public',
+      '**/assets',
+      '**/dist',
+      '**/package-lock.json',
+      '**/yarn.lock',
+      '**/pnpm-lock.yaml',
+      '**/.history',
+      '**/CHANGELOG*.md',
+      '**/*.min.*',
+      '**/LICENSE*',
+      '**/__snapshots__',
+      '**/auto-import?(s).d.ts',
+      '**/components.d.ts',
+    ],
   },
   {
-    name: 'files-to-ignore',
-    ignores: ['**/dist/**', '**/node_modules/**'],
+    files: ['**/*.{js,mjs,cjs,ts,vue}'],
   },
-  ...defineConfigWithVueTs(pluginVue.configs['flat/essential'], vueTsConfigs.recommended),
+  { languageOptions: { globals: globals.browser } },
+  stylistic.configs.recommended,
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  ...pluginVue.configs['flat/essential'],
   {
-    name: 'plugins',
-    plugins: {
-      vue: pluginVue,
-      prettier,
-    },
-  },
-  {
-    name: 'parser-config-vue',
-    files: ['**/*.{vue,jsx,tsx}'],
+    files: ['**/*.vue'],
     languageOptions: {
-      parser: vueEslintParser,
-    },
-  },
-  {
-    name: 'disable-typecheck-in-js-files',
-    files: ['**/*.{js,mjs,cjs}'],
-    rules: tselint.configs.disableTypeChecked.rules,
-  },
-  ...tselint.config({
-    files: ['**/*.{ts,mts,cts}'],
-    plugins: {
-      '@typescript-eslint': tselint.plugin, // ts默认规则补充
-    },
-    languageOptions: {
-      parser: tselint.parser, // ts解析器，解析ts语法
+      parser: parserVue,
       parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
         ecmaFeatures: {
           jsx: true,
         },
+        extraFileExtensions: ['.vue'],
+        parser: tseslint.parser,
+        sourceType: 'module',
       },
     },
-    rules: {
-      // TS自定义规则
+    plugins: {
+      vue: pluginVue,
     },
-  }),
-  {
-    name: 'custom-rules',
+    processor: pluginVue.processors['.vue'],
     rules: {
-      '@typescript-eslint/no-unused-vars': 'warn',
+      ...pluginVue.configs.base.rules,
+      ...pluginVue.configs['vue3-essential'].rules,
+      ...pluginVue.configs['vue3-strongly-recommended'].rules,
+      ...pluginVue.configs['vue3-recommended'].rules,
+      // ...更多配置规则
     },
   },
 ]

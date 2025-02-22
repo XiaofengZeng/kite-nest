@@ -9,8 +9,10 @@
     "build": "pnpm -r run build",
     "build:ui": "cd packages/ui && pnpm build",
     "format": "pnpm exec prettier --write --cache .",
-    "lint": "eslint . --max-warnings 0 --cache",
-    "lint:fix": "pnpm run lint --fix"
+    "lint": "pnpm lint:eslint && pnpm lint:style",
+    "lint:eslint": "eslint --fix --cache --max-warnings 0 **/*.{vue,js,ts,tsx} --cache-location node_modules/.cache/eslint/",
+    "lint:style": "stylelint --fix --max-warnings 0 --cache **/*.{css,scss,sass,vue} --cache-location node_modules/.cache/stylelint/",
+    "clear:cache": "rimraf node_modules/.cache"
   },
   "engines": {
     "node": ">= 18"
@@ -19,17 +21,29 @@
     "vue": "^3.5.13"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin": "^4.0.1",
     "@vitejs/plugin-vue": "^5.2.1",
-    "@vue/eslint-config-typescript": "^14.3.0",
     "@vue/tsconfig": "^0.7.0",
-    "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-vue": "^9.32.0",
-    "prettier": "3.4.2",
+    "postcss": "^8.5.3",
+    "postcss-html": "^1.8.0",
+    "postcss-less": "^6.0.0",
+    "postcss-scss": "^4.0.9",
+    "rimraf": "^6.0.1",
     "sass": "^1.83.4",
     "sass-embedded": "^1.83.4",
+    "stylelint": "^16.14.1",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-recess-order": "^6.0.0",
+    "stylelint-config-recommended-scss": "^14.1.0",
+    "stylelint-config-recommended-vue": "^1.6.0",
+    "stylelint-config-standard": "^37.0.0",
+    "stylelint-config-standard-scss": "^14.0.0",
     "typescript": "~5.6.2",
     "vite": "^6.0.5",
     "vite-plugin-dts": "^4.5.0",
+    "vite-plugin-eslint": "^1.8.1",
+    "vue-eslint-parser": "^9.4.3",
     "vue-tsc": "^2.2.0"
   }
 }
