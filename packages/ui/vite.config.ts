@@ -7,7 +7,7 @@ export default defineConfig({
     outDir: 'dist',
     minify: false,
     rollupOptions: {
-      //忽略打包vue文件
+      // 忽略打包vue文件
       external: ['vue'],
       input: ['kite-ui.ts'],
       output: {
