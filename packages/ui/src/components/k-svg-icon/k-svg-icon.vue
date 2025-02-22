@@ -1,5 +1,8 @@
 <template>
-  <icon ref="iconRef" :class="iconClasses">
+  <icon
+    ref="iconRef"
+    :class="iconClasses"
+  >
     <slot />
   </icon>
 </template>
@@ -17,8 +20,10 @@ export interface IKSvgIconProps {
 }
 
 defineOptions({
-  name: 'k-svg-icon',
+  name: 'KSvgIcon',
 })
+
+const DEFAULT_TYPE = 'primary'
 
 /**
  * 类型颜色
@@ -29,8 +34,10 @@ const typeColor = {
 }
 
 const props = withDefaults(defineProps<IKSvgIconProps>(), {
-  type: 'primary',
+  type: DEFAULT_TYPE,
   initColor: '#666',
+  hoverColor: typeColor[DEFAULT_TYPE],
+  activatedColor: typeColor[DEFAULT_TYPE],
   size: '1em',
   isActive: false,
 })
@@ -55,25 +62,26 @@ defineExpose({
 
 <style scoped lang="scss">
 .svg-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: v-bind('props.size');
   height: v-bind('props.size');
-  font-size: v-bind('props.size');
-
-  color: v-bind('props.initColor');
-  // vertical-align: -0.15em;
-  fill: currentColor;
   // stroke: currentColor;
   overflow: hidden;
+  font-size: v-bind('props.size');
+  color: v-bind('props.initColor');
   outline: none; // 去除默认轮廓，防止点击时触发
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  // vertical-align: -0.15em;
+  fill: currentcolor;
   transition: color 0.3s ease;
+
   &:hover {
     color: v-bind('iconHoverColor');
   }
 }
+
 .is-active {
   color: v-bind('iconActivatedColor');
 }
