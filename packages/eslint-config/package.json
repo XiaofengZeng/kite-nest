@@ -5,12 +5,36 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "types": "./index.d.ts"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./ignore-files": {
+      "import": "./dist/ignore-files.js",
+      "types": "./dist/ignore-files.d.ts"
+    },
+    "./js": {
+      "import": "./dist/javascript.js",
+      "types": "./dist/javascript.d.ts"
+    },
+    "./ts": {
+      "import": "./dist/typescript.js",
+      "types": "./dist/typescript.d.ts"
+    },
+    "./ts-vue": {
+      "import" : "./dist/typescript-vue.js",
+      "types": "./dist/typescript-vue.d.ts"
+    },
+    "./browser": {
+      "import": "./dist/browser.js",
+      "types": "./dist/browser.d.ts"
+    },
+    "./stylistic": {
+      "import": "./dist/stylistic.js",
+      "types": "./dist/stylistic.d.ts"
     }
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "keywords": [
     "eslint"
@@ -23,10 +47,13 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@stylistic/eslint-plugin": "^4.0.1",
     "eslint": "^9.19.0",
     "eslint-plugin-vue": "^9.32.0",
     "globals": "^15.14.0",
     "jiti": "^2.4.2",
-    "typescript-eslint": "^8.23.0"
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.23.0",
+    "vue-eslint-parser": "^9.4.3"
   }
 }
