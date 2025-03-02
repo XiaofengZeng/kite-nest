@@ -1,0 +1,27 @@
+{
+  "name": "demo-webgl",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@kite-nest/prettier-config": "workspace:^",
+    "@kite-nest/shared": "workspace:^",
+    "@kite-nest/ui": "workspace:^",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@kite-nest/eslint-config": "workspace:^",
+    "@kite-nest/tsconfig": "workspace:^",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "eslint-config-prettier": "^10.0.1",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.5",
+    "vue-tsc": "^2.2.0"
+  }
+}

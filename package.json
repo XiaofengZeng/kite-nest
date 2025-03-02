@@ -1,47 +1,47 @@
 {
   "name": "kite-nest",
-  "version": "0.1.0",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "packageManager": "pnpm@9.5.0",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev:demo-webgl": "cd apps/demo-webgl && vite",
+    "build": "pnpm -r run build",
+    "build:ui": "cd packages/ui && pnpm build",
+    "format": "pnpm exec prettier --write --cache .",
+    "lint": "pnpm lint:eslint && pnpm lint:style",
+    "lint:eslint": "eslint --fix --cache --max-warnings 0 **/*.{vue,js,ts,tsx} --cache-location node_modules/.cache/eslint/",
+    "lint:style": "stylelint --fix --max-warnings 0 --cache **/*.{css,scss,sass,vue} --cache-location node_modules/.cache/stylelint/",
+    "clear:cache": "rimraf node_modules/.cache"
+  },
+  "engines": {
+    "node": ">= 18"
   },
   "dependencies": {
-    "axios": "^0.26.1",
-    "cesium": "^1.91.0",
-    "copy-webpack-plugin": "^5.1.2",
-    "core-js": "^3.6.5",
-    "dayjs": "^1.11.0",
-    "element-ui": "^2.15.6",
-    "ol": "^6.13.0",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^5.0.1",
-    "@vue/cli-plugin-eslint": "^5.0.1",
-    "@vue/cli-plugin-router": "^5.0.1",
-    "@vue/cli-plugin-vuex": "~4.5.15",
-    "@vue/cli-service": "^5.0.1",
-    "@vue/eslint-config-airbnb": "^5.0.2",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-vue": "^7.0.0",
-    "less": "^3.0.4",
-    "less-loader": "^5.0.0",
-    "lint-staged": "^12.3.5",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,jsx,vue}": [
-      "vue-cli-service lint",
-      "git add"
-    ]
+    "@kite-nest/eslint-config": "workspace:^",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "postcss": "^8.5.3",
+    "postcss-html": "^1.8.0",
+    "postcss-less": "^6.0.0",
+    "postcss-scss": "^4.0.9",
+    "rimraf": "^6.0.1",
+    "sass": "^1.83.4",
+    "sass-embedded": "^1.83.4",
+    "stylelint": "^16.14.1",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-recess-order": "^6.0.0",
+    "stylelint-config-recommended-scss": "^14.1.0",
+    "stylelint-config-recommended-vue": "^1.6.0",
+    "stylelint-config-standard": "^37.0.0",
+    "stylelint-config-standard-scss": "^14.0.0",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.5",
+    "vite-plugin-dts": "^4.5.0",
+    "vite-plugin-eslint": "^1.8.1",
+    "vue-tsc": "^2.2.0"
   }
 }

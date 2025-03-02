@@ -1,0 +1,34 @@
+{
+  "name": "@kite-nest/ui",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/kite-ui.js",
+      "default": "./dist/kite-ui.umd.cjs"
+    },
+    "./style.css": {
+      "import": "./dist/kite-ui.css",
+      "require": "./dist/kite-ui.css"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build"
+  },
+  "keywords": [
+    "ui"
+  ],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "devDependencies": {
+    "@kite-nest/tsconfig": "workspace:^"
+  }
+}
