@@ -109,9 +109,6 @@ class TranslationController {
     const tZ = Matrix4.fromTranslation(new Cartesian3(0, 0, length / 2))
     Matrix4.multiply(this._zAxis.primitive.modelMatrix, tZ, this._zAxis.primitive.modelMatrix)
 
-    // this._viewer.scene.primitives.add(this._xAxis.primitive)
-    // this._viewer.scene.primitives.add(this._yAxis.primitive)
-    // this._viewer.scene.primitives.add(this._zAxis.primitive)
     this._axises.add(this._xAxis.primitive)
     this._axises.add(this._yAxis.primitive)
     this._axises.add(this._zAxis.primitive)
@@ -131,13 +128,9 @@ class TranslationController {
       this._viewer.screenSpaceEventHandler.setInputAction((e: ScreenSpaceEventHandler.MotionEvent) => {
         // 注册拖拽移动事件
         const { startPosition, endPosition } = e
-        // const start = this._viewer.scene.globe.pick(this._viewer.camera.getPickRay(startPosition), this._viewer.scene)
-        // const end = this._viewer.scene.globe.pick(this._viewer.camera.getPickRay(endPosition), this._viewer.scene)
-        // const offset = Cartesian3.subtract(end, start, new Cartesian3()) // 向量
-        this._startPosition = this._viewer.scene.pickPosition(startPosition)
-        this._endPosition = this._viewer.scene.pickPosition(endPosition)
-
-        const offset = Cartesian3.subtract(this._endPosition, this._startPosition, new Cartesian3())
+        const start = this._viewer.scene.globe.pick(this._viewer.camera.getPickRay(startPosition), this._viewer.scene)
+        const end = this._viewer.scene.globe.pick(this._viewer.camera.getPickRay(endPosition), this._viewer.scene)
+        const offset = Cartesian3.subtract(end, start, new Cartesian3()) // 向量
 
         console.log(`
           x:${offset.x}
@@ -146,14 +139,10 @@ class TranslationController {
         `)
 
         if (['xAxis-line', 'xAxis-arrow'].includes(id)) {
-          const translationM = Matrix4.fromTranslation(new Cartesian3(0, 0, -offset.x))
           // 移动坐标轴
-          // Matrix4.multiply(this._xAxis.primitive.modelMatrix, Matrix4.fromTranslation(new Cartesian3(0, 0, -offset.x)), this._xAxis.primitive.modelMatrix)
-          // Matrix4.multiply(this._yAxis.primitive.modelMatrix, Matrix4.fromTranslation(new Cartesian3(-offset.x, 0, 0)), this._yAxis.primitive.modelMatrix)
-          // Matrix4.multiply(this._zAxis.primitive.modelMatrix, Matrix4.fromTranslation(new Cartesian3(-offset.x, 0, 0)), this._zAxis.primitive.modelMatrix)
-          Matrix4.multiply(this._xAxis.primitive.modelMatrix, translationM, this._xAxis.primitive.modelMatrix)
-          Matrix4.multiply(this._yAxis.primitive.modelMatrix, translationM, this._yAxis.primitive.modelMatrix)
-          Matrix4.multiply(this._zAxis.primitive.modelMatrix, translationM, this._zAxis.primitive.modelMatrix)
+          Matrix4.multiply(this._xAxis.primitive.modelMatrix, Matrix4.fromTranslation(new Cartesian3(0, 0, -offset.x)), this._xAxis.primitive.modelMatrix)
+          Matrix4.multiply(this._yAxis.primitive.modelMatrix, Matrix4.fromTranslation(new Cartesian3(-offset.x, 0, 0)), this._yAxis.primitive.modelMatrix)
+          Matrix4.multiply(this._zAxis.primitive.modelMatrix, Matrix4.fromTranslation(new Cartesian3(-offset.x, 0, 0)), this._zAxis.primitive.modelMatrix)
           // 更新点位
           if (this._target instanceof Entity) {
             this._position.x += offset.x
