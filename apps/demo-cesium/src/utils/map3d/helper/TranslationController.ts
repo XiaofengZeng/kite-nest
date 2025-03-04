@@ -1,20 +1,20 @@
 import { CallbackPositionProperty, Cartesian3, Color, Math as CsMath, Entity, Matrix3, Matrix4, Primitive, PrimitiveCollection, ScreenSpaceEventHandler, ScreenSpaceEventType, Viewer } from 'cesium'
 import { ArrowPolylinePrimitive } from '../primitive'
 
-type TransformHelperAxisStyleOptions = {
+type TranslationControllerAxisStyleOptions = {
   width?: number
   arrowWidth?: number
   length?: number
   arrowLength?: number
 }
 
-type TransformHelperOptions = {
+type TranslationControllerOptions = {
   viewer: Viewer
   target: Entity | Primitive | Cartesian3
-  style: TransformHelperAxisStyleOptions
+  style: TranslationControllerAxisStyleOptions
 }
 
-class TransformHelper {
+class TranslationController {
   _viewer: Viewer
   _target: Entity | Primitive | Cartesian3 // TODO: 后续支持模型位置编辑
   _position: Cartesian3
@@ -26,7 +26,7 @@ class TransformHelper {
   _startPosition: Cartesian3
   _endPosition: Cartesian3
 
-  constructor(options: TransformHelperOptions) {
+  constructor(options: TranslationControllerOptions) {
     this._viewer = options.viewer
     this._target = options.target
     this._axises = new PrimitiveCollection()
@@ -60,7 +60,7 @@ class TransformHelper {
     return this._zAxis
   }
 
-  _createAxises(origin: Cartesian3, style: TransformHelperAxisStyleOptions) {
+  _createAxises(origin: Cartesian3, style: TranslationControllerAxisStyleOptions) {
     const {
       width,
       arrowWidth,
@@ -186,4 +186,4 @@ class TransformHelper {
   }
 }
 
-export default TransformHelper
+export default TranslationController

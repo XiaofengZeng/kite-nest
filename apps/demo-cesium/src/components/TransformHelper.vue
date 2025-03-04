@@ -2,7 +2,7 @@
 import { onMounted } from 'vue'
 import { initViewer } from '../utils/map3d/viewer'
 import { Cartesian3, HeadingPitchRange, Math as CsMath } from 'cesium'
-import { TransformHelper } from '../utils/map3d'
+import { TranslationController } from '../utils/map3d'
 
 defineOptions({
   name: 'TransformHelper',
@@ -21,7 +21,7 @@ onMounted(() => {
       pixelSize: 50,
     },
   })
-  new TransformHelper({
+  new TranslationController({
     viewer,
     target: debugPoint,
     style: {

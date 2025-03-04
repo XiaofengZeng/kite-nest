@@ -1,1 +1,1 @@
-export { default as TransformHelper } from './TransformHelper'
+export { default as TranslationController } from './TranslationController'
