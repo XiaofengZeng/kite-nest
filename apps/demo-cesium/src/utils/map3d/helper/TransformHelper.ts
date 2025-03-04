@@ -1,7 +1,7 @@
-import { CallbackPositionProperty, CallbackProperty, Cartesian3, Color, Math as CsMath, Entity, Matrix3, Matrix4, Primitive, PrimitiveCollection, ScreenSpaceEventHandler, ScreenSpaceEventType, Viewer } from 'cesium'
+import { CallbackPositionProperty, Cartesian3, Color, Math as CsMath, Entity, Matrix3, Matrix4, Primitive, PrimitiveCollection, ScreenSpaceEventHandler, ScreenSpaceEventType, Viewer } from 'cesium'
 import { ArrowPolylinePrimitive } from '../primitive'
 
-type TransformHelperStyleOptions = {
+type TransformHelperAxisStyleOptions = {
   width?: number
   arrowWidth?: number
   length?: number
@@ -11,17 +11,17 @@ type TransformHelperStyleOptions = {
 type TransformHelperOptions = {
   viewer: Viewer
   target: Entity | Primitive | Cartesian3
-  style: TransformHelperStyleOptions
+  style: TransformHelperAxisStyleOptions
 }
 
 class TransformHelper {
   _viewer: Viewer
   _target: Entity | Primitive | Cartesian3 // TODO: 后续支持模型位置编辑
   _position: Cartesian3
+  _axises: PrimitiveCollection
   _xAxis: ArrowPolylinePrimitive
   _yAxis: ArrowPolylinePrimitive
   _zAxis: ArrowPolylinePrimitive
-  _axises: PrimitiveCollection
 
   _startPosition: Cartesian3
   _endPosition: Cartesian3
@@ -29,27 +29,50 @@ class TransformHelper {
   constructor(options: TransformHelperOptions) {
     this._viewer = options.viewer
     this._target = options.target
-    const {
-      width,
-      arrowWidth,
-      length = 100,
-      arrowLength,
-    } = options.style
+    this._axises = new PrimitiveCollection()
 
     // 只维护该属性，同步变换目标点位
+    let position: Cartesian3
     if (this._target instanceof Cartesian3) {
-      this._position = this._target
+      position = this._target
     }
     else if (this._target instanceof Entity) {
-      this._position = this._target.position.getValue()
+      position = this._target.position.getValue()
       this._target.position = new CallbackPositionProperty(() => {
         return this._position
       }, false)
     }
 
+    this._createAxises(position, options.style)
+
+    this._registerEvent()
+  }
+
+  get xAxis() {
+    return this._xAxis
+  }
+
+  get yAxis() {
+    return this._yAxis
+  }
+
+  get zAxis() {
+    return this._zAxis
+  }
+
+  _createAxises(origin: Cartesian3, style: TransformHelperAxisStyleOptions) {
+    const {
+      width,
+      arrowWidth,
+      length = 100,
+      arrowLength,
+    } = style
+
+    this._position = origin
+
     this._xAxis = new ArrowPolylinePrimitive({
       id: 'xAxis',
-      position: this._position,
+      position: origin,
       color: Color.RED,
       width,
       arrowWidth,
@@ -58,7 +81,7 @@ class TransformHelper {
     })
     this._yAxis = new ArrowPolylinePrimitive({
       id: 'yAxis',
-      position: this._position,
+      position: origin,
       color: Color.GREEN,
       width,
       arrowWidth,
@@ -67,7 +90,7 @@ class TransformHelper {
     })
     this._zAxis = new ArrowPolylinePrimitive({
       id: 'zAxis',
-      position: this._position,
+      position: origin,
       color: Color.BLUE,
       width,
       arrowWidth,
@@ -86,32 +109,13 @@ class TransformHelper {
     const tZ = Matrix4.fromTranslation(new Cartesian3(0, 0, length / 2))
     Matrix4.multiply(this._zAxis.primitive.modelMatrix, tZ, this._zAxis.primitive.modelMatrix)
 
-    this._viewer.scene.primitives.add(this._xAxis.primitive)
-    this._viewer.scene.primitives.add(this._yAxis.primitive)
-    this._viewer.scene.primitives.add(this._zAxis.primitive)
-
-    this._axises = new PrimitiveCollection()
+    // this._viewer.scene.primitives.add(this._xAxis.primitive)
+    // this._viewer.scene.primitives.add(this._yAxis.primitive)
+    // this._viewer.scene.primitives.add(this._zAxis.primitive)
     this._axises.add(this._xAxis.primitive)
     this._axises.add(this._yAxis.primitive)
     this._axises.add(this._zAxis.primitive)
-
-    this._registerEvent()
-  }
-
-  get xAxis() {
-    return this._xAxis
-  }
-
-  get yAxis() {
-    return this._yAxis
-  }
-
-  get zAxis() {
-    return this._zAxis
-  }
-
-  _createAxis() {
-
+    this._viewer.scene.primitives.add(this._axises)
   }
 
   _registerEvent() {

@@ -28,7 +28,6 @@ onMounted(() => {
       length: AXIS_LENGTH,
     },
   })
-
   viewer.zoomTo(debugPoint, new HeadingPitchRange(CsMath.toRadians(45), CsMath.toRadians(-45), 500))
 })
 
