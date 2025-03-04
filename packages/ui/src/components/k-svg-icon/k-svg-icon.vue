@@ -34,10 +34,10 @@ const typeColor = {
 }
 
 const props = withDefaults(defineProps<IKSvgIconProps>(), {
-  type: DEFAULT_TYPE,
+  type: 'primary',
   initColor: '#666',
-  hoverColor: typeColor[DEFAULT_TYPE],
-  activatedColor: typeColor[DEFAULT_TYPE],
+  hoverColor: '#0f74fe',
+  activatedColor: '#0f74fe',
   size: '1em',
   isActive: false,
 })
