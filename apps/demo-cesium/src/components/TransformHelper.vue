@@ -2,7 +2,7 @@
 import { onMounted } from 'vue'
 import { initViewer } from '../utils/map3d/viewer'
 import { Cartesian3, HeadingPitchRange, Math as CsMath } from 'cesium'
-import { TranslationController } from '../utils/map3d'
+import { TranslationController, TranslationControllerTest } from '../utils/map3d'
 
 defineOptions({
   name: 'TransformHelper',
@@ -28,6 +28,7 @@ onMounted(() => {
       length: AXIS_LENGTH,
     },
   })
+  // new TranslationControllerTest(viewer, debugPoint)
   viewer.zoomTo(debugPoint, new HeadingPitchRange(CsMath.toRadians(45), CsMath.toRadians(-45), 500))
 })
 
